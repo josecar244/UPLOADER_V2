@@ -554,22 +554,6 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
                 except Exception:
                     pass
 
-    # Intentar activar pestaña 'Transcripción' si el reproductor la requiere
-    click_tab_script = """
-        () => {
-            const tabs = Array.from(document.querySelectorAll('.x-tab-button, .x-tab, span.x-tab-inner, a, div'));
-            const transTab = tabs.find(t => {
-                const txt = (t.textContent || t.innerText || '').trim().toLowerCase();
-                return (txt === 'transcripción' || txt === 'transcripcion' || txt === 'transcript') && t.offsetWidth > 0;
-            });
-            if (transTab) {
-                transTab.click();
-                return true;
-            }
-            return false;
-        }
-    """
-
     # Polling dinámico: Esperar hasta 15 segundos a que aparezcan las líneas del diálogo
     logger.info("Extrayendo diálogo con sondeo dinámico de renderizado...")
     extract_script = """
@@ -610,22 +594,8 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
 
     transcript_lines = []
     t_start = time.time()
-    tab_clicked = False
 
     while time.time() - t_start < 15:
-        if not tab_clicked:
-            try:
-                page.evaluate(click_tab_script)
-            except Exception:
-                pass
-            for f in page.frames:
-                try:
-                    if f.evaluate(click_tab_script):
-                        tab_clicked = True
-                        break
-                except Exception:
-                    pass
-
         try:
             res = page.evaluate(extract_script)
             if res and len(res) > 0:
