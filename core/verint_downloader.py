@@ -848,18 +848,18 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
                         const rowName = (qtip && qtip.includes('Export_Calidad')) ? qtip.trim() : (nameCell ? nameCell.textContent.trim() : name);
                         
                         const statusLower = statusText.toLowerCase();
-                        const isCompleted = statusLower.includes('completado') || statusLower.includes('completed') || (statusImg && statusImg.className.includes('statusOK'));
-                        const isLoading = statusLower.includes('en proceso') || statusLower.includes('in progress') || (statusImg && statusImg.className.includes('statusLoading'));
+                        const isCompleted = statusLower.includes('completad') || statusLower.includes('completed') || statusLower.includes('finalizad') || (statusImg && statusImg.className.includes('statusOK'));
+                        const isLoading = statusLower.includes('proceso') || statusLower.includes('progress') || statusLower.includes('nueva') || statusLower.includes('cola') || statusLower.includes('pendient') || (statusImg && statusImg.className.includes('statusLoading'));
                         
                         return {
                             rowName,
-                            isCompleted: isCompleted || (!isLoading && statusLower.length > 0),
-                            isLoading,
+                            isCompleted: isCompleted,
+                            isLoading: isLoading || !isCompleted,
                             statusText
                         };
                     });
                     
-                    const allCompleted = details.every(d => d.isCompleted);
+                    const allCompleted = details.length > 0 && details.every(d => d.isCompleted);
                     const anyLoading = details.some(d => d.isLoading);
                     
                     return {
@@ -905,7 +905,7 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
 
                         logger.debug(f"Descargando reporte: {report_name}...")
                         
-                        with page.expect_download() as download_info:
+                        with page.expect_download(timeout=60000) as download_info:
                             # Click the specific link
                             page.evaluate("""
                                 (repName) => {
@@ -923,6 +923,7 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
                                             targetRow.click();
                                         }
                                     }
+                                }
                             """, report_name)
                             
                         download = download_info.value
