@@ -799,7 +799,32 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
         for attempt in range(1, max_attempts + 1):
             logger.info(f"Comprobación {attempt}/{max_attempts} (próximo refresco en 60s)...")
             
-            # Click refresh button and reload ExtJS store
+            # Verificación de sesión activa / Auto-relogin si caducó la sesión o saltó 'Error desconocido'
+            is_signed_out = "signin" in page.url or page.query_selector("#username") is not None
+            has_error_banner = page.evaluate("""
+                () => {
+                    const text = document.body.innerText || '';
+                    return text.includes('Error desconocido') || text.includes('Unknown error') || text.includes('Session expired') || text.includes('Sesión expirada');
+                }
+            """)
+            
+            if is_signed_out or has_error_banner:
+                logger.warning("Se detectó sesión expirada o banner de error en Verint. Ejecutando auto-relogin de recuperación...")
+                try:
+                    if "signin" in page.url or page.query_selector("#username"):
+                        page.fill("#username", username)
+                        page.press("#username", "Enter")
+                        page.wait_for_selector("#password", timeout=10000)
+                        page.fill("#password", password)
+                        page.press("#password", "Enter")
+                        page.wait_for_timeout(3500)
+                    
+                    # Re-navegar a la vista de exportaciones guardadas
+                    page.goto(reports_url)
+                    page.wait_for_timeout(3000)
+                    logger.info("Auto-relogin completado con éxito. Reanudando verificación de la grilla...")
+                except Exception as e:
+                    logger.error(f"Error al intentar re-iniciar sesión: {e}")
             page.evaluate("""
                 () => {
                     if (window.Ext && window.Ext.ComponentQuery) {
