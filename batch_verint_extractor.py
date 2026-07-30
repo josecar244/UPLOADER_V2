@@ -56,6 +56,13 @@ def run_batch_extraction(
             call_id = item.get('call_id')
             metadata = item.get('metadata', {})
             
+            # Omitir si la llamada ya fue procesada y existe su archivo .txt
+            existing_files = [f for f in os.listdir(output_dir) if f.endswith(f"{call_id}.txt")] if os.path.exists(output_dir) else []
+            if existing_files:
+                logger.info(f"[SKIP {idx}/{len(call_items)}] La llamada {call_id} ya fue procesada anteriormente ({existing_files[0]}). Omitiendo...")
+                successful_count += 1
+                continue
+
             logger.info(f"\n--- Processing [{idx}/{len(call_items)}] | Call ID: {call_id} ---")
             
             try:
