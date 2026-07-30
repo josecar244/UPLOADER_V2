@@ -348,28 +348,18 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
     except Exception:
         pass
 
-    # 1. Asegurar que el filtro del conmutador esté visible desglosando la barra lateral 'Mi conjunto'
-    logger.info("[PASO 1/5] Haciendo clic en la pestaña 'Mi conjunto...'...")
-    dataset_btn = page.locator('span.x-btn-inner:has-text("Mi conjunto"), .x-btn:has-text("Mi conjunto"), span:has-text("Mi conjunto")').first
-    try:
-        dataset_btn.wait_for(state="visible", timeout=15000)
-        dataset_btn.click()
-    except Exception:
-        page.evaluate("""
-            () => {
-                const btn = Array.from(document.querySelectorAll('*')).find(el => {
-                    const txt = (el.innerText || el.textContent || '').trim();
-                    return (txt === 'Mi conjunto...' || txt === 'My Data Set...' || txt.includes('Mi conjunto')) && el.offsetWidth > 0;
-                });
-                if (btn) btn.click();
-            }
-        """)
-    page.wait_for_timeout(300)
-
-    # 2. Desplegar acordeón Conmutadores si está colapsado
-    logger.info("[PASO 2/5] Desplegando sección de acordeón 'Conmutadores'...")
+    # 1. Inyección atómica instantánea de filtros (Panel + Fechas + Call ID + Clic en Aplicar)
+    logger.info(f"Aplicando filtros inmediatos para Call ID: {call_id}...")
     page.evaluate("""
-        () => {
+        ([targetId, desde, hasta]) => {
+            // Desplegar panel lateral si está cerrado
+            const btn = Array.from(document.querySelectorAll('*')).find(el => {
+                const txt = (el.innerText || el.textContent || '').trim();
+                return (txt === 'Mi conjunto...' || txt === 'My Data Set...') && el.offsetWidth > 0;
+            });
+            if (btn) btn.click();
+
+            // Desplegar acordeón Conmutadores si está colapsado
             const headers = Array.from(document.querySelectorAll('.x-panel-header, .x-accordion-hd, [id^="panel-"] .x-panel-header'));
             const target = headers.find(h => (h.textContent || '').includes('Conmutadores') || (h.textContent || '').includes('Switches'));
             if (target) {
@@ -378,36 +368,14 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
                     target.click();
                 }
             }
-        }
-    """)
-    page.wait_for_timeout(300)
-
-    # 3. Configurar rango de fechas (Entre desde_str y hasta_str)
-    logger.info(f"[PASO 3/5] Aplicando rango de fechas ({desde_str} a {hasta_str})...")
-    page.evaluate("""
-        ([desde, hasta]) => {
-            const safeFire = (el, type) => {
-                if (!el) return;
-                let evt;
-                if (typeof Event === 'function') {
-                    try { evt = new Event(type, { bubbles: true, cancelable: true }); } catch(e) {}
-                }
-                if (!evt) {
-                    try {
-                        evt = document.createEvent('HTMLEvents');
-                        evt.initEvent(type, true, true);
-                    } catch(e) {}
-                }
-                if (evt) el.dispatchEvent(evt);
-            };
 
             if (window.Ext && window.Ext.ComponentQuery) {
+                // Radio 'Entre' y Fechas
                 const radios = Ext.ComponentQuery.query('radiofield, radio');
                 for (let r of radios) {
                     const label = (r.boxLabel || r.fieldLabel || (r.el ? r.el.dom.innerText : '') || '').toLowerCase();
                     if (label.includes('entre') || label.includes('between')) {
                         r.setValue(true);
-                        if (r.fireEvent) try { r.fireEvent('change', r, true); } catch(e) {}
                     }
                 }
                 const dateFields = Ext.ComponentQuery.query('datefield');
@@ -415,106 +383,39 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
                     try {
                         dateFields[0].setValue(desde);
                         dateFields[1].setValue(hasta);
-                        if (dateFields[0].fireEvent) dateFields[0].fireEvent('change', dateFields[0], desde);
-                        if (dateFields[1].fireEvent) dateFields[1].fireEvent('change', dateFields[1], hasta);
                     } catch(e) {}
                 }
-            }
-        }
-    """, [desde_str, hasta_str])
-    page.wait_for_timeout(300)
 
-    # 4. Asignar ID de llamada al filtro del conmutador
-    logger.info(f"[PASO 4/5] Escribiendo Call ID en campo Conmutador: {call_id}...")
-    field_set = page.evaluate("""
-        (targetId) => {
-            const safeFire = (el, type) => {
-                if (!el) return;
-                let evt;
-                if (typeof Event === 'function') {
-                    try { evt = new Event(type, { bubbles: true, cancelable: true }); } catch(e) {}
-                }
-                if (!evt) {
-                    try {
-                        evt = document.createEvent('HTMLEvents');
-                        evt.initEvent(type, true, true);
-                    } catch(e) {}
-                }
-                if (evt) el.dispatchEvent(evt);
-            };
-
-            if (window.Ext && window.Ext.ComponentQuery) {
+                // Call ID en el campo Conmutador
                 const fields = Ext.ComponentQuery.query('textfield');
                 for (let f of fields) {
                     const label = (f.fieldLabel || f.name || f.emptyText || (f.el ? f.el.dom.innerText : '') || '').toLowerCase();
                     const containerText = (f.up('.x-panel, .x-container') ? f.up('.x-panel, .x-container').title || f.up('.x-panel, .x-container').el.dom.innerText : '').toLowerCase();
                     if (label.includes('conmutador') || label.includes('id de llamada') || label.includes('switch') || containerText.includes('conmutadores')) {
                         f.setValue(targetId);
-                        if (f.fireEvent) {
-                            try { f.fireEvent('change', f, targetId); } catch(e) {}
-                            try { f.fireEvent('keyup', f, { getKey: () => 13 }); } catch(e) {}
-                        }
-                        return true;
+                        if (f.fireEvent) try { f.fireEvent('change', f, targetId); } catch(e) {}
+                        break;
                     }
                 }
-            }
 
-            // Fallback en DOM puro
-            const inputs = Array.from(document.querySelectorAll('input')).filter(i => i.offsetWidth > 0);
-            for (let i of inputs) {
-                const containerText = (i.closest('.x-panel, .x-container, .x-field') ? i.closest('.x-panel, .x-container, .x-field').innerText : '').toLowerCase();
-                if (containerText.includes('conmutador') || containerText.includes('switch') || containerText.includes('id de llamada')) {
-                    i.value = targetId;
-                    safeFire(i, 'input');
-                    safeFire(i, 'change');
-                    return true;
+                // Clic en Aplicar
+                const aplicarBtn = document.querySelector('a.verint-facad-blue-button') || 
+                                   Array.from(document.querySelectorAll('.x-btn, span.x-btn-inner, a')).find(b => {
+                                       const txt = (b.textContent || b.innerText || '').trim().toLowerCase();
+                                       return (txt === 'aplicar' || txt === 'apply') && b.offsetWidth > 0;
+                                   });
+                if (aplicarBtn) {
+                    const t = aplicarBtn.closest('.x-btn') || aplicarBtn;
+                    t.click();
                 }
             }
-            return false;
         }
-    """, call_id)
+    """, [call_id, desde_str, hasta_str])
 
-    try:
-        input_loc = page.locator('.x-field:has-text("conmutador"), .x-field:has-text("ID de llamada")').locator('input').first
-        if input_loc.is_visible():
-            input_loc.click(force=True)
-            input_loc.fill(call_id)
-            input_loc.press("Tab")
-    except Exception:
-        pass
-
-    page.wait_for_timeout(300)
-
-    # 5. Presionar el botón Aplicar
-    logger.info("[PASO 5/5] Presionando botón 'Aplicar'...")
-    try:
-        aplicar_btn = page.locator("a.verint-facad-blue-button, .x-btn:has-text('Aplicar')").first
-        aplicar_btn.wait_for(state="visible", timeout=15000)
-        aplicar_btn.click(force=True)
-        logger.info("¡Botón 'Aplicar' presionado con éxito!")
-    except Exception as e:
-        logger.warning(f"Ejecutando activación JS de Aplicar...")
-        page.evaluate("""
-            () => {
-                const btn = document.querySelector('a.verint-facad-blue-button') || 
-                            Array.from(document.querySelectorAll('.x-btn, span.x-btn-inner, a')).find(b => {
-                                const txt = (b.textContent || b.innerText || '').trim().toLowerCase();
-                                return (txt === 'aplicar' || txt === 'apply') && b.offsetWidth > 0;
-                            });
-                if (btn) {
-                    const target = btn.closest('.x-btn') || btn;
-                    target.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
-                    target.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
-                    target.click();
-                }
-            }
-        """)
-
-    # 6. Esperar la aparición inmediata del registro en la grilla #grdContacts (sin esperar la onda de audio)
-    logger.info("Esperando la aparición inmediata del registro en la grilla #grdContacts...")
+    # 2. Esperar aparición inmediata de la fila resultado en la grilla
     row_loc = page.locator('#grdContacts table[data-recordindex="0"], #grdContacts tr.x-grid-row, table[data-recordindex="0"]').first
     try:
-        row_loc.wait_for(state="visible", timeout=10000)
+        row_loc.wait_for(state="visible", timeout=8000)
     except Exception:
         pass
 
@@ -522,7 +423,7 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
     try:
         row_loc.dblclick(force=True)
         opened = True
-        logger.info("¡Doble clic ejecutado de inmediato sobre la fila de la grilla!")
+        logger.info("¡Doble clic ejecutado de inmediato sobre la fila!")
     except Exception as ex_row:
         logger.warning(f"Intento de dblclick Playwright: {ex_row}")
 
