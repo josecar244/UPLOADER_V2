@@ -10,7 +10,6 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from playwright.sync_api import sync_playwright
-from docx import Document
 import teradatasql
 
 load_dotenv()
@@ -505,8 +504,9 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
             }
         """)
 
-    # 6. Espera dinámica por la fila resultado en la grilla #grdContacts
-    logger.info("Esperando actualización dinámica de la grilla de resultados...")
+    # 6. Esperar que Verint Cloud refresque la grilla con el nuevo resultado (2.5s)
+    logger.info("Esperando refresco de la grilla de resultados (2.5s)...")
+    page.wait_for_timeout(2500)
     try:
         page.wait_for_selector('table[data-recordindex="0"], tr.x-grid-row, .x-grid-item', state='visible', timeout=10000)
     except Exception:
