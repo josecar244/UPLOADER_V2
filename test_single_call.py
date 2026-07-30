@@ -29,3 +29,11 @@ if __name__ == "__main__":
         logger.info(f"¡ÉXITO! Transcripción guardada correctamente en: {os.path.abspath(txt_path)}")
     except Exception as e:
         logger.error(f"Error durante la prueba de extracción: {e}")
+        print("\n" + "="*70)
+        print(" [PAUSA DE INSPECCIÓN MANUAL]")
+        print(" El navegador Chrome se encuentra ABIERTO en tu pantalla con los filtros aplicados.")
+        print(" Revisa la pantalla de Verint para ver qué ocurrió.")
+        print(" Presiona la tecla ENTER en esta consola cuando desees cerrar el navegador...")
+        print("="*70)
+        input()
+

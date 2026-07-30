@@ -244,58 +244,61 @@ def initialize_verint_session(headless: bool = False):
         page.wait_for_timeout(1500)
 
         logger.info("Seleccionando 'Televentas' en el combo desplegable de Proyecto...")
-        # 1. Intentar vía interacción directa de Playwright sobre el input/trigger del combo
-        try:
-            proj_input = page.locator('.x-field:has-text("Proyecto:"), .x-field:has-text("Project:")').locator('input').first
-            if proj_input.is_visible():
-                proj_input.click()
-                page.wait_for_timeout(500)
-                # Hacer clic en la flecha desplegable si existe
-                trigger = page.locator('.x-field:has-text("Proyecto:") .x-form-trigger, .x-field:has-text("Project:") .x-form-trigger').first
-                if trigger.is_visible():
-                    trigger.click()
-                    page.wait_for_timeout(500)
-                
-                # Seleccionar la opción Televentas en la lista desplegada
-                option = page.locator('.x-boundlist-item:has-text("Televentas")').first
-                if option.is_visible():
-                    option.click()
-                    logger.info("¡Opción 'Televentas' seleccionada desde la lista desplegable!")
-        except Exception as ex_loc:
-            logger.warning(f"Intento directo por locator: {ex_loc}")
-
-        # 2. Asignación robusta vía JS ExtJS sobre todos los combos y campos de texto
-        page.evaluate("""
+        project_selected = page.evaluate("""
             () => {
-                if (window.Ext && window.Ext.ComponentQuery) {
-                    const fields = Ext.ComponentQuery.query('combo, combobox, textfield');
-                    for (let f of fields) {
-                        const label = (f.fieldLabel || f.name || (f.el ? f.el.dom.innerText : '') || '').toLowerCase();
-                        const val = String(f.getValue() || '');
-                        if (label.includes('proyecto') || label.includes('project') || val.includes('Banca Comercial')) {
-                            f.setValue('Televentas');
-                            if (f.fireEvent) {
-                                f.fireEvent('select', f, f.findRecordByValue ? f.findRecordByValue('Televentas') : 'Televentas');
-                                f.fireEvent('change', f, 'Televentas');
-                            }
-                        }
-                    }
-                }
-                
-                // Fallback en DOM puro
-                const labelEl = Array.from(document.querySelectorAll('*')).find(el => {
+                const label = Array.from(document.querySelectorAll('*')).find(el => {
                     const txt = (el.textContent || '').trim();
                     return (txt === 'Proyecto:' || txt === 'Project:') && el.offsetWidth > 0;
                 });
-                const inputEl = labelEl ? (labelEl.parentElement.querySelector('input') || labelEl.closest('.x-container, .x-field').querySelector('input')) : null;
-                if (inputEl) {
-                    inputEl.value = 'Televentas';
-                    inputEl.dispatchEvent(new Event('input', { bubbles: true }));
-                    inputEl.dispatchEvent(new Event('change', { bubbles: true }));
+                const projectInput = label ? (label.parentElement.querySelector('input') || label.closest('.x-container, .x-field').querySelector('input')) : null;
+                
+                if (!projectInput) return { success: false, error: "Input de Proyecto no encontrado" };
+                if ((projectInput.value || '').trim() === 'Televentas') {
+                    return { success: true, alreadySelected: true };
                 }
+                
+                const triggerId = projectInput.id.replace('-inputEl', '-trigger-picker');
+                const trigger = document.getElementById(triggerId);
+                if (trigger) {
+                    trigger.click();
+                } else {
+                    projectInput.click();
+                }
+                return { success: true, clicked: true };
             }
         """)
-        logger.info("Proyecto 'Televentas' asignado.")
+
+        page.wait_for_timeout(800)
+        # Seleccionar la opción Televentas en la lista desplegable abierta
+        try:
+            option = page.locator('.x-boundlist-item:has-text("Televentas")').first
+            if option.is_visible(timeout=3000):
+                option.click()
+                logger.info("¡Opción 'Televentas' seleccionada desde la lista desplegable!")
+            else:
+                # Fallback ExtJS directo sin fireEvent corrupto
+                page.evaluate("""
+                    () => {
+                        if (window.Ext && window.Ext.ComponentQuery) {
+                            const combos = Ext.ComponentQuery.query('combo, combobox');
+                            for (let c of combos) {
+                                const label = (c.fieldLabel || c.name || (c.el ? c.el.dom.innerText : '') || '').toLowerCase();
+                                if (label.includes('proyecto') || label.includes('project')) {
+                                    c.setValue('Televentas');
+                                }
+                            }
+                        }
+                    }
+                """)
+        except Exception as ex_opt:
+            logger.warning(f"Aviso al hacer clic en opción de lista: {ex_opt}")
+
+        logger.info("Proyecto 'Televentas' asignado. Esperando que finalice la carga de Verint...")
+        page.wait_for_timeout(2000)
+        try:
+            page.wait_for_selector('.x-mask', state='detached', timeout=15000)
+        except Exception:
+            pass
     except Exception as e:
         logger.warning(f"Aviso al seleccionar proyecto Televentas: {e}")
 
@@ -309,12 +312,23 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
     if metadata is None:
         metadata = {}
 
-    fecha_yyyymmdd = metadata.get('fecha') or metadata.get('fecha_modificacion') or metadata.get('fecha_venta') or '20260716'
+    fecha_yyyymmdd = metadata.get('fecha') or metadata.get('fecha_modificacion') or metadata.get('fecha_venta') or datetime.datetime.now().strftime("%Y%m%d")
     dni = metadata.get('dni') or metadata.get('num_documento') or '00000000'
     reg_ejecutivo = metadata.get('ejecutivo') or metadata.get('usuario') or 'B00000'
 
     output_filename = f"{fecha_yyyymmdd}_{dni}_{reg_ejecutivo}_TC_{call_id}.txt"
     txt_path = os.path.join(output_dir, output_filename)
+
+    # Calcular rango de fechas (desde el día 1 del mes de la llamada hasta hoy)
+    if fecha_yyyymmdd and len(str(fecha_yyyymmdd)) == 8:
+        f_str = str(fecha_yyyymmdd)
+        desde_str = f"01/{f_str[4:6]}/{f_str[:4]}"
+    else:
+        past = datetime.datetime.now() - datetime.timedelta(days=45)
+        desde_str = past.strftime("01/%m/%Y")
+    hasta_str = datetime.datetime.now().strftime("%d/%m/%Y")
+
+    logger.info(f"=== INICIANDO PASOS DE FILTRADO PARA CALL ID: {call_id} (Rango Fechas: {desde_str} - {hasta_str}) ===")
 
     # Cerrar cualquier ventana de interacción abierta anteriormente
     try:
@@ -325,12 +339,12 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
             }
         """)
         page.keyboard.press("Escape")
-        page.wait_for_timeout(500)
+        page.wait_for_timeout(1000)
     except Exception:
         pass
 
-    # 1. Asegurar que el filtro del conmutador esté visible desglosando la barra lateral
-    logger.info("Esperando que el botón 'Mi conjunto...' esté visible...")
+    # 1. Asegurar que el filtro del conmutador esté visible desglosando la barra lateral 'Mi conjunto'
+    logger.info("[PASO 1/5] Haciendo clic en la pestaña 'Mi conjunto...'...")
     dataset_btn = page.locator('span.x-btn-inner:has-text("Mi conjunto"), .x-btn:has-text("Mi conjunto"), span:has-text("Mi conjunto")').first
     try:
         dataset_btn.wait_for(state="visible", timeout=15000)
@@ -345,8 +359,10 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
                 if (btn) btn.click();
             }
         """)
+    page.wait_for_timeout(300)
 
-    # Desplegar acordeón Conmutadores si está colapsado
+    # 2. Desplegar acordeón Conmutadores si está colapsado
+    logger.info("[PASO 2/5] Desplegando sección de acordeón 'Conmutadores'...")
     page.evaluate("""
         () => {
             const headers = Array.from(document.querySelectorAll('.x-panel-header, .x-accordion-hd, [id^="panel-"] .x-panel-header'));
@@ -359,41 +375,94 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
             }
         }
     """)
+    page.wait_for_timeout(300)
 
-    # Limpiar filtros de fecha
+    # 3. Configurar rango de fechas (Entre desde_str y hasta_str)
+    logger.info(f"[PASO 3/5] Aplicando rango de fechas ({desde_str} a {hasta_str})...")
     page.evaluate("""
-        () => {
+        ([desde, hasta]) => {
+            const safeFire = (el, type) => {
+                if (!el) return;
+                let evt;
+                if (typeof Event === 'function') {
+                    try { evt = new Event(type, { bubbles: true, cancelable: true }); } catch(e) {}
+                }
+                if (!evt) {
+                    try {
+                        evt = document.createEvent('HTMLEvents');
+                        evt.initEvent(type, true, true);
+                    } catch(e) {}
+                }
+                if (evt) el.dispatchEvent(evt);
+            };
+
             if (window.Ext && window.Ext.ComponentQuery) {
+                const radios = Ext.ComponentQuery.query('radiofield, radio');
+                for (let r of radios) {
+                    const label = (r.boxLabel || r.fieldLabel || (r.el ? r.el.dom.innerText : '') || '').toLowerCase();
+                    if (label.includes('entre') || label.includes('between')) {
+                        r.setValue(true);
+                        if (r.fireEvent) try { r.fireEvent('change', r, true); } catch(e) {}
+                    }
+                }
                 const dateFields = Ext.ComponentQuery.query('datefield');
-                for (let df of dateFields) {
-                    try { df.setValue(null); } catch(e) {}
+                if (dateFields.length >= 2) {
+                    try {
+                        dateFields[0].setValue(desde);
+                        dateFields[1].setValue(hasta);
+                        if (dateFields[0].fireEvent) dateFields[0].fireEvent('change', dateFields[0], desde);
+                        if (dateFields[1].fireEvent) dateFields[1].fireEvent('change', dateFields[1], hasta);
+                    } catch(e) {}
                 }
             }
-            const dateInputs = Array.from(document.querySelectorAll('input')).filter(input => {
-                return (input.id.includes('date') || input.name === 'startDate') && input.offsetWidth > 0;
-            });
-            for (let input of dateInputs) {
-                input.value = '';
-            }
         }
-    """)
+    """, [desde_str, hasta_str])
+    page.wait_for_timeout(300)
 
-    # Asignar ID de llamada al filtro del conmutador
-    logger.info(f"Asignando ID de llamada al filtro del conmutador: {call_id}")
+    # 4. Asignar ID de llamada al filtro del conmutador
+    logger.info(f"[PASO 4/5] Escribiendo Call ID en campo Conmutador: {call_id}...")
     field_set = page.evaluate("""
         (targetId) => {
+            const safeFire = (el, type) => {
+                if (!el) return;
+                let evt;
+                if (typeof Event === 'function') {
+                    try { evt = new Event(type, { bubbles: true, cancelable: true }); } catch(e) {}
+                }
+                if (!evt) {
+                    try {
+                        evt = document.createEvent('HTMLEvents');
+                        evt.initEvent(type, true, true);
+                    } catch(e) {}
+                }
+                if (evt) el.dispatchEvent(evt);
+            };
+
             if (window.Ext && window.Ext.ComponentQuery) {
                 const fields = Ext.ComponentQuery.query('textfield');
                 for (let f of fields) {
-                    const label = (f.fieldLabel || f.name || (f.el ? f.el.dom.innerText : '') || '').toLowerCase();
-                    if (label.includes('conmutador') || label.includes('id de llamada') || label.includes('switch')) {
+                    const label = (f.fieldLabel || f.name || f.emptyText || (f.el ? f.el.dom.innerText : '') || '').toLowerCase();
+                    const containerText = (f.up('.x-panel, .x-container') ? f.up('.x-panel, .x-container').title || f.up('.x-panel, .x-container').el.dom.innerText : '').toLowerCase();
+                    if (label.includes('conmutador') || label.includes('id de llamada') || label.includes('switch') || containerText.includes('conmutadores')) {
                         f.setValue(targetId);
                         if (f.fireEvent) {
-                            f.fireEvent('change', f, targetId);
-                            f.fireEvent('keyup', f, { getKey: () => 13 });
+                            try { f.fireEvent('change', f, targetId); } catch(e) {}
+                            try { f.fireEvent('keyup', f, { getKey: () => 13 }); } catch(e) {}
                         }
                         return true;
                     }
+                }
+            }
+
+            // Fallback en DOM puro
+            const inputs = Array.from(document.querySelectorAll('input')).filter(i => i.offsetWidth > 0);
+            for (let i of inputs) {
+                const containerText = (i.closest('.x-panel, .x-container, .x-field') ? i.closest('.x-panel, .x-container, .x-field').innerText : '').toLowerCase();
+                if (containerText.includes('conmutador') || containerText.includes('switch') || containerText.includes('id de llamada')) {
+                    i.value = targetId;
+                    safeFire(i, 'input');
+                    safeFire(i, 'change');
+                    return true;
                 }
             }
             return false;
@@ -409,8 +478,10 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
     except Exception:
         pass
 
-    # 3. Presionar el botón Aplicar usando la clase única de Verint (.verint-facad-blue-button)
-    logger.info("Esperando que el botón 'Aplicar' esté listo y visible...")
+    page.wait_for_timeout(300)
+
+    # 5. Presionar el botón Aplicar
+    logger.info("[PASO 5/5] Presionando botón 'Aplicar'...")
     try:
         aplicar_btn = page.locator("a.verint-facad-blue-button, .x-btn:has-text('Aplicar')").first
         aplicar_btn.wait_for(state="visible", timeout=15000)
@@ -433,95 +504,85 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
                 }
             }
         """)
-        logger.info("¡Botón 'Aplicar' presionado con éxito por Playwright!")
-    except Exception as e:
-        logger.warning(f"Ejecutando activación JS de Aplicar...")
-        page.evaluate("""
-            () => {
-                const btn = document.querySelector('a.verint-facad-blue-button') || 
-                            Array.from(document.querySelectorAll('.x-btn, span.x-btn-inner, a')).find(b => {
-                                const txt = (b.textContent || b.innerText || '').trim().toLowerCase();
-                                return (txt === 'aplicar' || txt === 'apply') && b.offsetWidth > 0;
-                            });
-                if (btn) {
-                    const target = btn.closest('.x-btn') || btn;
-                    target.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, cancelable: true }));
-                    target.dispatchEvent(new MouseEvent('mouseup', { bubbles: true, cancelable: true }));
-                    target.click();
-                }
-            }
-        """)
 
-    # 4. Esperar que Verint Cloud refresque la grilla con el resultado filtrado (6 segundos)
-    logger.info("Esperando refresco de la grilla de resultados (6 segundos)...")
-    page.wait_for_timeout(6000)
+    # 6. Espera dinámica por la fila resultado en la grilla #grdContacts
+    logger.info("Esperando actualización dinámica de la grilla de resultados...")
+    try:
+        page.wait_for_selector('table[data-recordindex="0"], tr.x-grid-row, .x-grid-item', state='visible', timeout=10000)
+    except Exception:
+        page.wait_for_timeout(2000)
 
     # Localizar la fila resultado dentro de la grilla principal #grdContacts y abrir la interacción
-    logger.info("Abriendo la interacción en #grdContacts...")
-    page.evaluate("""
-        () => {
-            if (window.Ext && window.Ext.ComponentQuery) {
-                const grids = Ext.ComponentQuery.query('gridpanel#grdContacts, gridpanel');
-                for (let g of grids) {
-                    const store = g.getStore();
-                    if (store && store.getCount() > 0) {
-                        const view = g.getView();
-                        const record = store.getAt(0);
-                        const node = view ? view.getNode(0) : null;
-                        if (view && record && node) {
-                            g.fireEvent('itemdblclick', view, record, node, 0);
-                            return true;
-                        }
-                    }
-                }
-            }
+    logger.info("Abriendo la interacción en la grilla #grdContacts...")
+    opened = False
+    try:
+        row_loc = page.locator('table[data-recordindex="0"], tr.x-grid-row, .x-grid-item').first
+        if row_loc.is_visible(timeout=5000):
+            row_loc.dblclick(force=True)
+            opened = True
+            logger.info("¡Doble clic ejecutado con éxito en la fila de la grilla!")
+    except Exception as ex_row:
+        logger.warning(f"Intento de dblclick Playwright: {ex_row}")
 
-            const gridEl = document.getElementById('grdContacts') || document.querySelector('.x-grid');
-            if (gridEl) {
-                const row = gridEl.querySelector('.x-grid-row, table.x-grid-item');
+    if not opened:
+        open_script = """
+            () => {
+                const row = document.querySelector('table[data-recordindex="0"]') || document.querySelector('.x-grid-row');
                 if (row) {
-                    const cell = row.querySelector('.x-grid-cell') || row;
                     const evt = new MouseEvent('dblclick', { bubbles: true, cancelable: true, view: window });
-                    cell.dispatchEvent(evt);
+                    row.dispatchEvent(evt);
                     return true;
                 }
+                const ctiData = document.querySelector('.SA_CTIData');
+                if (ctiData) {
+                    ctiData.click();
+                    return true;
+                }
+                return false;
+            }
+        """
+        try:
+            opened = page.evaluate(open_script)
+        except Exception:
+            pass
+        if not opened:
+            for f in page.frames:
+                try:
+                    if f.evaluate(open_script):
+                        opened = True
+                        break
+                except Exception:
+                    pass
+
+    # Intentar activar pestaña 'Transcripción' si el reproductor la requiere
+    click_tab_script = """
+        () => {
+            const tabs = Array.from(document.querySelectorAll('.x-tab-button, .x-tab, span.x-tab-inner, a, div'));
+            const transTab = tabs.find(t => {
+                const txt = (t.textContent || t.innerText || '').trim().toLowerCase();
+                return (txt === 'transcripción' || txt === 'transcripcion' || txt === 'transcript') && t.offsetWidth > 0;
+            });
+            if (transTab) {
+                transTab.click();
+                return true;
             }
             return false;
         }
-    """)
+    """
 
-    # Esperar la carga de la ventana emergente y renderizado del diálogo (#InteractionTranscriptionMain)
-    logger.info("Esperando que Verint cargue el reproductor y renderice las líneas de diálogo (12 segundos)...")
-    page.wait_for_timeout(12000)
-
-    # Scroll suave dinámico en el panel de transcripción para cargar oraciones extensas
-    page.evaluate("""
+    # Polling dinámico: Esperar hasta 15 segundos a que aparezcan las líneas del diálogo
+    logger.info("Extrayendo diálogo con sondeo dinámico de renderizado...")
+    extract_script = """
         () => {
-            const mainEl = document.getElementById('InteractionTranscriptionMain');
-            if (mainEl) {
-                mainEl.scrollTop = mainEl.scrollHeight;
-            }
-        }
-    """)
-    page.wait_for_timeout(1000)
-
-    # Extraer el diálogo estructurado con Asesor vs Cliente desde #InteractionTranscriptionMain
-    logger.info("Extrayendo el diálogo clasificado (Asesor vs Cliente) desde #InteractionTranscriptionMain...")
-    transcript_lines = page.evaluate("""
-        () => {
-            const mainEl = document.getElementById('InteractionTranscriptionMain') 
-                || document.querySelector('div[id*="InteractionTranscription"]')
-                || document.body;
-
-            const rows = Array.from(mainEl.querySelectorAll('tr')).filter(tr => {
-                return tr.querySelector('.interactionTranscriptionSPSTimeFormatter') && tr.offsetWidth > 0;
+            const rows = Array.from(document.querySelectorAll('tr')).filter(tr => {
+                return tr.querySelector('.interactionTranscriptionSPSTimeFormatter') !== null;
             });
 
             const structuredLines = [];
 
             for (let tr of rows) {
                 const timeEl = tr.querySelector('.interactionTranscriptionSPSTimeFormatter');
-                const timestamp = timeEl ? timeEl.innerText.trim() : '';
+                const timestamp = timeEl ? (timeEl.innerText || timeEl.textContent || '').trim() : '';
 
                 const isAgent = !!tr.querySelector('.transcriptionSpeakerAgent');
                 const isCustomer = !!tr.querySelector('.transcriptionSpeakerCustomer');
@@ -530,11 +591,11 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
                 const wordEls = Array.from(tr.querySelectorAll('.transcript'));
                 let text = '';
                 if (wordEls.length > 0) {
-                    text = wordEls.map(w => w.innerText).join('').replace(/\\s+/g, ' ').trim();
+                    text = wordEls.map(w => w.innerText || w.textContent || '').join('').replace(/\\s+/g, ' ').trim();
                 } else {
                     const tds = tr.querySelectorAll('td');
                     if (tds.length >= 3) {
-                        text = tds[2].innerText.replace(/\\s+/g, ' ').trim();
+                        text = (tds[2].innerText || tds[2].textContent || '').replace(/\\s+/g, ' ').trim();
                     }
                 }
 
@@ -543,25 +604,49 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
                 }
             }
 
-            if (structuredLines.length > 0) return structuredLines;
-
-            const timeEls = Array.from(mainEl.querySelectorAll('.interactionTranscriptionSPSTimeFormatter'));
-            for (let tSpan of timeEls) {
-                const tr = tSpan.closest('tr');
-                if (tr) {
-                    const isAgent = !!tr.querySelector('.transcriptionSpeakerAgent');
-                    const speaker = isAgent ? 'Asesor' : 'Cliente';
-                    const timestamp = tSpan.innerText.trim();
-                    const text = (tr.innerText || '').replace(timestamp, '').replace(/\\n+/g, ' ').trim();
-                    if (text.length > 2) {
-                        structuredLines.push(`${speaker} [${timestamp}]: ${text}`);
-                    }
-                }
-            }
-
-            return structuredLines;
+            return structuredLines.length > 0 ? structuredLines : null;
         }
-    """)
+    """
+
+    transcript_lines = []
+    t_start = time.time()
+    tab_clicked = False
+
+    while time.time() - t_start < 15:
+        if not tab_clicked:
+            try:
+                page.evaluate(click_tab_script)
+            except Exception:
+                pass
+            for f in page.frames:
+                try:
+                    if f.evaluate(click_tab_script):
+                        tab_clicked = True
+                        break
+                except Exception:
+                    pass
+
+        try:
+            res = page.evaluate(extract_script)
+            if res and len(res) > 0:
+                transcript_lines = res
+                break
+        except Exception:
+            pass
+
+        for f in page.frames:
+            try:
+                res = f.evaluate(extract_script)
+                if res and len(res) > 0:
+                    transcript_lines = res
+                    break
+            except Exception:
+                pass
+
+        if transcript_lines:
+            break
+
+        page.wait_for_timeout(500)
 
     logger.info(f"¡Diálogo estructurado capturado con éxito! Total de intervenciones: {len(transcript_lines)}")
 
@@ -630,11 +715,49 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
 
 def extract_transcript_by_call_id(call_id: str, headless: bool = False, metadata: dict = None, output_dir: str = ".") -> str:
     """
-    Función de entrada individual para la prueba de 1 sola llamada (compatible con test_verint_transcript.py).
+    Función de entrada individual para la prueba de 1 sola llamada.
+    Si headless=False, en caso de error NO cierra el navegador para permitir inspección manual.
     """
     p, browser, context, page = initialize_verint_session(headless=headless)
     try:
         return extract_single_transcript_in_session(page, call_id, metadata, output_dir)
+    except Exception as e:
+        if not headless:
+            logger.warning(f"Ocurrió un error en modo visible (headless=False). El navegador permanecerá abierto para inspección manual.")
+        else:
+            browser.close()
+            p.stop()
+        raise e
+    else:
+        if headless:
+            browser.close()
+            p.stop()
+
+
+def extract_all_transcripts_batch(periodo: Optional[str] = None, headless: bool = True, output_dir: Optional[str] = None) -> List[str]:
+    """
+    Función de PRODUCCIÓN: Obtiene la lista de llamadas pendientes desde Teradata (SUB_EQUIPO='TC')
+    y extrae todas las transcripciones reutilizando 1 sola sesión de Verint.
+    """
+    calls = get_pending_calls_from_teradata(periodo=periodo)
+    if not calls:
+        logger.info("No se encontraron llamadas pendientes en Teradata para el periodo indicado.")
+        return []
+
+    logger.info(f"Iniciando extracción masiva para {len(calls)} llamadas pendientes...")
+    p, browser, context, page = initialize_verint_session(headless=headless)
+    exported_files = []
+    try:
+        for idx, item in enumerate(calls, 1):
+            call_id = item['call_id']
+            meta = item['metadata']
+            logger.info(f"[{idx}/{len(calls)}] Procesando extracción de llamada: {call_id}...")
+            try:
+                txt_file = extract_single_transcript_in_session(page, call_id, metadata=meta, output_dir=output_dir)
+                exported_files.append(txt_file)
+            except Exception as e:
+                logger.error(f"Fallo en la extracción de la llamada {call_id}: {e}")
+        return exported_files
     finally:
         browser.close()
         p.stop()
