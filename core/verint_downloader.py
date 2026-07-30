@@ -302,7 +302,7 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
             page.wait_for_selector("#password")
             page.fill("#password", password)
             page.press("#password", "Enter")
-            page.wait_for_load_state("domcontentloaded")
+            page.wait_for_timeout(3500)
             
         logger.info("Inicio de sesión completado.")
         
@@ -310,18 +310,19 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
         interactions_url = "https://wfo.mt5.verintcloudservices.com/wfo/ui/#wsm%5Bws%5D=speech_Listen"
         logger.debug(f"Navegando a la vista de interacciones: {interactions_url}")
         page.goto(interactions_url)
-        page.wait_for_load_state("domcontentloaded")
         
         # Wait for workspace loading
         logger.info("Abriendo Speech Analytics y cargando espacio de trabajo...")
-        page.wait_for_selector("#appshell-nav-first-level-text", state="attached", timeout=60000)
+        try:
+            page.locator("span.x-btn-inner:has-text('Proyecto'), span.x-btn-inner:has-text('Project'), #appshell-nav-first-level-text, .x-panel").first.wait_for(state="attached", timeout=60000)
+        except Exception:
+            pass
         
         # Wait for sidebar menu button to be present
         logger.debug("Esperando el botón de la barra lateral...")
-        # Wait dynamically for the sidebar tab 'Project' / 'Proyecto' to render
         tab_selector = 'span.x-btn-inner:has-text("Project"), span.x-btn-inner:has-text("Proyecto")'
         try:
-            page.wait_for_selector(tab_selector, timeout=60000)
+            page.locator(tab_selector).first.wait_for(state="attached", timeout=60000)
         except Exception:
             raise RuntimeError("La interfaz de Speech Analytics de Verint tardó demasiado en cargar.")
         
@@ -790,14 +791,14 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
                 page.wait_for_timeout(3000)
         
         # 12. Polling loop for completion and download
-        logger.info("Esperando que se procese la exportación en Verint...")
-        max_attempts = 30
-        poll_interval = 20 # seconds
+        logger.info("Esperando que se procese la exportación en Verint (verificación cada 1 minuto)...")
+        max_attempts = 15
+        poll_interval = 60 # seconds (1 minuto por intento)
         download_triggered = False
         downloaded_paths = []
         
         for attempt in range(1, max_attempts + 1):
-            logger.debug(f"Intento de verificación {attempt}/{max_attempts}...")
+            logger.info(f"Comprobación {attempt}/{max_attempts} (próximo refresco en 60s)...")
             
             # Click refresh button and reload ExtJS store
             page.evaluate("""
@@ -828,7 +829,16 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
             # Check row statuses matching our export name (checking outerHTML and data-qtip attributes to avoid ellipsis truncation)
             export_status = page.evaluate("""
                 (name) => {
-                    const rows = Array.from(document.querySelectorAll('.x-grid-item, .x-grid-row, tr.x-grid-row'));
+                    const allRows = Array.from(document.querySelectorAll('tr.x-grid-row, table.x-grid-item'));
+                    const seen = new Set();
+                    const rows = allRows.filter(r => {
+                        const tr = r.tagName === 'TR' ? r : r.querySelector('tr');
+                        if (tr && !seen.has(tr)) {
+                            seen.add(tr);
+                            return true;
+                        }
+                        return false;
+                    });
                     const matchingRows = rows.filter(row => {
                         const html = (row.outerHTML || '');
                         const text = (row.textContent || '');
@@ -874,12 +884,20 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
             if not export_status.get("found"):
                 logger.debug(f"La exportación '{export_name}' aún no es visible en la lista. Esperando...")
             else:
-                details = export_status.get("details", [])
-                logger.debug(f"Found {len(details)} export partitions:")
+                raw_details = export_status.get("details", [])
+                # Deduplicar por nombre exacto de la partición (rowName)
+                unique_details = {}
+                for d in raw_details:
+                    if d['rowName'] not in unique_details:
+                        unique_details[d['rowName']] = d
+                details = list(unique_details.values())
+
+                all_completed = len(details) > 0 and all(d['isCompleted'] for d in details)
+                logger.info(f"Se encontraron {len(details)} partición(es) de la exportación:")
                 for d in details:
-                    logger.debug(f"  - {d['rowName']}: status='{d['statusText']}' (completed={d['isCompleted']})")
+                    logger.info(f"  - {d['rowName']}: estado='{d['statusText']}' (completado={d['isCompleted']})")
                     
-                if export_status.get("allCompleted"):
+                if all_completed:
                     logger.info("¡Exportación completada! Descargando reporte...")
                     
                     # Click name links to trigger download events sequentially
