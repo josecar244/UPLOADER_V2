@@ -510,33 +510,21 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
             }
         """)
 
-    # 6. Esperar a que la máscara de carga ('Cargando...', .x-mask) desaparezca por completo
-    logger.info("Esperando que finalice la carga de resultados ('Cargando...')...")
+    # 6. Esperar la aparición inmediata del registro en la grilla #grdContacts (sin esperar la onda de audio)
+    logger.info("Esperando la aparición inmediata del registro en la grilla #grdContacts...")
+    row_loc = page.locator('#grdContacts table[data-recordindex="0"], #grdContacts tr.x-grid-row, table[data-recordindex="0"]').first
     try:
-        page.wait_for_timeout(1000)
-        page.wait_for_function("""
-            () => {
-                const masks = Array.from(document.querySelectorAll('.x-mask, .x-mask-msg')).filter(m => {
-                    return m.offsetWidth > 0 && m.offsetHeight > 0;
-                });
-                return masks.length === 0;
-            }
-        """, timeout=15000)
-        page.wait_for_timeout(1000)
+        row_loc.wait_for(state="visible", timeout=10000)
     except Exception:
-        page.wait_for_timeout(3000)
+        pass
 
-    # Localizar la fila resultado dentro de la grilla principal #grdContacts y abrir la interacción
-    logger.info("Abriendo la interacción en la grilla #grdContacts...")
     opened = False
     try:
-        row_loc = page.locator('table[data-recordindex="0"], tr.x-grid-row, .x-grid-item').first
-        row_loc.wait_for(state="visible", timeout=8000)
-        row_loc.dblclick()
+        row_loc.dblclick(force=True)
         opened = True
-        logger.info("¡Doble clic ejecutado con éxito en la fila de la grilla!")
+        logger.info("¡Doble clic ejecutado de inmediato sobre la fila de la grilla!")
     except Exception as ex_row:
-        logger.warning(f"Intento de dblclick Playwright sin force: {ex_row}")
+        logger.warning(f"Intento de dblclick Playwright: {ex_row}")
 
     if not opened:
         open_script = """
@@ -630,7 +618,7 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
         if transcript_lines:
             break
 
-        page.wait_for_timeout(500)
+        page.wait_for_timeout(200)
 
     logger.info(f"¡Diálogo estructurado capturado con éxito! Total de intervenciones: {len(transcript_lines)}")
 
