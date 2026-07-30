@@ -394,35 +394,55 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
         logger.debug(f"Setting Date range: {desde_str} - {hasta_str}...")
         date_set = page.evaluate("""
             ([desde, hasta]) => {
-                const dateInputs = Array.from(document.querySelectorAll('input')).filter(input => {
-                    return input.id.startsWith('datefield-') && input.offsetWidth > 0;
-                });
-                
-                if (dateInputs.length < 2) return { success: false, error: "Date inputs not found" };
-                
-                const dateRadios = Array.from(document.querySelectorAll('input[type=\"radio\"][id^=\"radiofield-\"]')).filter(r => {
-                    const container = r.closest('.x-field');
-                    return container && (container.textContent.includes('Entre') || container.textContent.includes('Between'));
+                let radioActivated = false;
+
+                // A. Activar botón de opción 'Entre' vía ExtJS ComponentQuery
+                if (window.Ext && window.Ext.ComponentQuery) {
+                    const radios = Ext.ComponentQuery.query('radiofield, radio');
+                    for (let r of radios) {
+                        const label = (r.boxLabel || r.fieldLabel || (r.el ? r.el.dom.innerText : '') || '').toLowerCase();
+                        if (label.includes('entre') || label.includes('between')) {
+                            r.setValue(true);
+                            if (r.fireEvent) r.fireEvent('change', r, true);
+                            radioActivated = true;
+                        }
+                    }
+
+                    const dateFields = Ext.ComponentQuery.query('datefield');
+                    if (dateFields.length >= 2) {
+                        try {
+                            dateFields[0].setValue(desde);
+                            dateFields[1].setValue(hasta);
+                            if (dateFields[0].fireEvent) dateFields[0].fireEvent('change', dateFields[0], desde);
+                            if (dateFields[1].fireEvent) dateFields[1].fireEvent('change', dateFields[1], hasta);
+                        } catch(e) {}
+                    }
+                }
+
+                // B. Fallback en DOM puro para seleccionar radio button 'Entre'
+                const dateRadios = Array.from(document.querySelectorAll('input[type="radio"]')).filter(r => {
+                    const parentText = (r.parentElement ? r.parentElement.innerText : '') || '';
+                    const containerText = (r.closest('.x-field, .x-form-item') ? r.closest('.x-field, .x-form-item').innerText : '') || '';
+                    return parentText.includes('Entre') || parentText.includes('Between') || containerText.includes('Entre') || containerText.includes('Between');
                 });
                 if (dateRadios.length > 0) {
                     dateRadios[0].click();
+                    dateRadios[0].checked = true;
+                    dateRadios[0].dispatchEvent(new Event('change', { bubbles: true }));
                 }
+
+                // C. Fallback en inputs de texto de fecha DOM
+                const dateInputs = Array.from(document.querySelectorAll('input')).filter(input => {
+                    return (input.id.includes('datefield') || input.className.includes('x-form-date-trigger') || input.name === 'startDate' || input.name === 'endDate') && input.offsetWidth > 0;
+                });
                 
-                dateInputs[0].value = desde;
-                dateInputs[1].value = hasta;
-                
-                const fireChange = (el) => {
-                    try {
-                        el.dispatchEvent(new Event('change'));
-                    } catch (e) {
-                        const evt = document.createEvent('HTMLEvents');
-                        evt.initEvent('change', true, true);
-                        el.dispatchEvent(evt);
-                    }
-                };
-                
-                fireChange(dateInputs[0]);
-                fireChange(dateInputs[1]);
+                if (dateInputs.length >= 2) {
+                    dateInputs[0].value = desde;
+                    dateInputs[1].value = hasta;
+                    dateInputs[0].dispatchEvent(new Event('change', { bubbles: true }));
+                    dateInputs[1].dispatchEvent(new Event('change', { bubbles: true }));
+                }
+
                 return { success: true };
             }
         """, [desde_str, hasta_str])
