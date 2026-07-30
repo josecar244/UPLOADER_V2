@@ -329,16 +329,22 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
 
     logger.info(f"=== INICIANDO PASOS DE FILTRADO PARA CALL ID: {call_id} (Rango Fechas: {desde_str} - {hasta_str}) ===")
 
-    # Cerrar cualquier ventana de interacción abierta anteriormente
+    # Cerrar cualquier vista de detalle abierta (speech_Player) y regresar a la vista de filtros (Analizar interacciones / speech_Listen)
     try:
         page.evaluate("""
             () => {
+                const navBtn = Array.from(document.querySelectorAll('a, span, div, button')).find(el => {
+                    const txt = (el.innerText || el.textContent || '').trim();
+                    return txt === 'Analizar interacciones' && el.offsetWidth > 0;
+                });
+                if (navBtn) navBtn.click();
+
                 const closeBtns = Array.from(document.querySelectorAll('.x-tool-close, div[class*="close"]')).filter(b => b.offsetWidth > 0);
                 for (let b of closeBtns) b.click();
             }
         """)
         page.keyboard.press("Escape")
-        page.wait_for_timeout(1000)
+        page.wait_for_timeout(800)
     except Exception:
         pass
 
