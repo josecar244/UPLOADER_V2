@@ -790,9 +790,8 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
                 logger.debug("Proyecto seleccionado con éxito en la vista de exportaciones.")
                 page.wait_for_timeout(3000)
         
-        # 12. Polling loop for completion and download
-        logger.info("Esperando que se procese la exportación en Verint (verificación cada 1 minuto)...")
-        max_attempts = 15
+        logger.info("Esperando que se procese la exportación en Verint (tope máximo: 20 minutos)...")
+        max_attempts = 20
         poll_interval = 60 # seconds (1 minuto por intento)
         download_triggered = False
         downloaded_paths = []
