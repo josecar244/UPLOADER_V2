@@ -510,25 +510,33 @@ def extract_single_transcript_in_session(page, call_id: str, metadata: dict = No
             }
         """)
 
-    # 6. Esperar que Verint Cloud refresque la grilla con el nuevo resultado (2.5s)
-    logger.info("Esperando refresco de la grilla de resultados (2.5s)...")
-    page.wait_for_timeout(2500)
+    # 6. Esperar a que la máscara de carga ('Cargando...', .x-mask) desaparezca por completo
+    logger.info("Esperando que finalice la carga de resultados ('Cargando...')...")
     try:
-        page.wait_for_selector('table[data-recordindex="0"], tr.x-grid-row, .x-grid-item', state='visible', timeout=10000)
+        page.wait_for_timeout(1000)
+        page.wait_for_function("""
+            () => {
+                const masks = Array.from(document.querySelectorAll('.x-mask, .x-mask-msg')).filter(m => {
+                    return m.offsetWidth > 0 && m.offsetHeight > 0;
+                });
+                return masks.length === 0;
+            }
+        """, timeout=15000)
+        page.wait_for_timeout(1000)
     except Exception:
-        page.wait_for_timeout(2000)
+        page.wait_for_timeout(3000)
 
     # Localizar la fila resultado dentro de la grilla principal #grdContacts y abrir la interacción
     logger.info("Abriendo la interacción en la grilla #grdContacts...")
     opened = False
     try:
         row_loc = page.locator('table[data-recordindex="0"], tr.x-grid-row, .x-grid-item').first
-        if row_loc.is_visible(timeout=5000):
-            row_loc.dblclick(force=True)
-            opened = True
-            logger.info("¡Doble clic ejecutado con éxito en la fila de la grilla!")
+        row_loc.wait_for(state="visible", timeout=8000)
+        row_loc.dblclick()
+        opened = True
+        logger.info("¡Doble clic ejecutado con éxito en la fila de la grilla!")
     except Exception as ex_row:
-        logger.warning(f"Intento de dblclick Playwright: {ex_row}")
+        logger.warning(f"Intento de dblclick Playwright sin force: {ex_row}")
 
     if not opened:
         open_script = """
