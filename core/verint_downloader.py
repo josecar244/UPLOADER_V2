@@ -419,6 +419,17 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
                     }
                 }
 
+                const safeFireChange = (el) => {
+                    if (!el) return;
+                    try {
+                        const evt = document.createEvent('HTMLEvents');
+                        evt.initEvent('change', true, true);
+                        el.dispatchEvent(evt);
+                    } catch (e) {
+                        try { el.dispatchEvent(new Event('change', { bubbles: true })); } catch(err) {}
+                    }
+                };
+
                 // B. Fallback en DOM puro para seleccionar radio button 'Entre'
                 const dateRadios = Array.from(document.querySelectorAll('input[type="radio"]')).filter(r => {
                     const parentText = (r.parentElement ? r.parentElement.innerText : '') || '';
@@ -428,7 +439,7 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
                 if (dateRadios.length > 0) {
                     dateRadios[0].click();
                     dateRadios[0].checked = true;
-                    dateRadios[0].dispatchEvent(new Event('change', { bubbles: true }));
+                    safeFireChange(dateRadios[0]);
                 }
 
                 // C. Fallback en inputs de texto de fecha DOM
@@ -439,8 +450,8 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
                 if (dateInputs.length >= 2) {
                     dateInputs[0].value = desde;
                     dateInputs[1].value = hasta;
-                    dateInputs[0].dispatchEvent(new Event('change', { bubbles: true }));
-                    dateInputs[1].dispatchEvent(new Event('change', { bubbles: true }));
+                    safeFireChange(dateInputs[0]);
+                    safeFireChange(dateInputs[1]);
                 }
 
                 return { success: true };
