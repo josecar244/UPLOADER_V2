@@ -1,0 +1,102 @@
+{
+  "business_vars": {
+    "corte_dia_inicio_1": 1,
+    "corte_dia_fin_1": 14,
+    "corte_dia_inicio_2": 15,
+    "corte_dia_fin_2": 31
+  },
+  "verint_settings": {
+    "verint_url": "https://wfo.mt5.verintcloudservices.com/wfo/control/signin",
+    "input_csv_template": "EV_{PERIODO}.csv",
+    "project_name": "Televentas",
+    "filter_name": "Filtro_Calidad"
+  },
+  "quality_execution_sequence": [
+    "sql_calidad/01_evaluacion_manual_pc.sql",
+    "sql_calidad/02_sa_marcacion_ventas_lpdp.sql",
+    "sql_calidad/03_sa_calculo_pesos_unpivot.sql",
+    "sql_calidad/04_sa_ajustes_curva.sql",
+    "sql_calidad/04_b_sa_parche_nota_cero.sql",
+    "sql_calidad/05_consolidacion_nota_final.sql"
+  ],
+  "quality_validation_settings": {
+    "source_tables_to_check": [
+      {
+        "table_name": "DLAB_GEC.M_EXP_CALIDAD_DATA_SPEECH_ANALYTICS",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.M_EXP_CALIDAD_DATA_SPEECH_ANALYTICS"
+      },
+      {
+        "table_name": "DLAB_GEC.M_EXP_CALIDAD_PURECLOUD_PRE",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.M_EXP_CALIDAD_PURECLOUD_PRE"
+      },
+      {
+        "table_name": "DLAB_GEC.M_EXP_VENTAS_TC",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.M_EXP_VENTAS_TC WHERE DIA BETWEEN {corte_dia_inicio_1} AND {corte_dia_fin_2}"
+      },
+      {
+        "table_name": "DLAB_GEC.M_EXP_VENTAS_PP",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.M_EXP_VENTAS_PP WHERE DIA BETWEEN {corte_dia_inicio_1} AND {corte_dia_fin_2}"
+      },
+      {
+        "table_name": "DLAB_GEC.M_EXP_VENTAS_CON",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.M_EXP_VENTAS_CON WHERE DIA BETWEEN {corte_dia_inicio_1} AND {corte_dia_fin_2}"
+      },
+      {
+        "table_name": "DLAB_GEC.T_VENTAS_BPE_MARKET",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.T_VENTAS_BPE_MARKET WHERE EXTRACT(DAY FROM FECHA_DESEMBOLSADO) BETWEEN {corte_dia_inicio_1} AND {corte_dia_fin_2}"
+      },
+      {
+        "table_name": "DLAB_GEC.V_GESTION_BNC",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.V_GESTION_BNC WHERE EXTRACT(DAY FROM FEC_LLAMADA) BETWEEN 1 AND 31"
+      },
+      {
+        "table_name": "DLAB_GEC.M_EXP_VENTAS_EC",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.M_EXP_VENTAS_EC WHERE DIA BETWEEN 1 AND 31"
+      },
+      {
+        "table_name": "DLAB_GEC.V_GESTION_CHIP",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.V_GESTION_CHIP WHERE COD_MES = '{PERIODO}'"
+      },
+      {
+        "table_name": "DLAB_GEC.M_EXP_VENTAS_CD",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.M_EXP_VENTAS_CD WHERE DIA BETWEEN 1 AND 31"
+      },
+      {
+        "table_name": "DLAB_GEC.T_RETENCION_BASE_CALIDAD_GIRU",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.T_RETENCION_BASE_CALIDAD_GIRU WHERE EXTRACT(DAY FROM FECHA_ALTA) BETWEEN 1 AND 31"
+      },
+      {
+        "table_name": "E_DW_VIEWS_DLAB.V_CNV_VISTA_RETENCION_BT",
+        "query": "SELECT COUNT(*) FROM E_DW_VIEWS_DLAB.V_CNV_VISTA_RETENCION_BT WHERE EXTRACT(DAY FROM FECHA) BETWEEN 1 AND 31"
+      },
+      {
+        "table_name": "DLAB_GEC.M_EXP_VENTAS_IL",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.M_EXP_VENTAS_IL WHERE DIA BETWEEN 1 AND 31"
+      },
+      {
+        "table_name": "DLAB_GEC.M_EXP_VENTAS_TCA",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.M_EXP_VENTAS_TCA WHERE DIA BETWEEN 1 AND 31"
+      },
+      {
+        "table_name": "DLAB_GEC.M_EXP_VENTAS_UPG",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.M_EXP_VENTAS_UPG WHERE DIA BETWEEN 1 AND 31"
+      },
+      {
+        "table_name": "DLAB_GEC.M_EXP_VENTAS_PA",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.M_EXP_VENTAS_PA WHERE DIA BETWEEN 1 AND 31"
+      },
+      {
+        "table_name": "DLAB_GEC.M_EXP_VENTAS_SEG",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.M_EXP_VENTAS_SEG WHERE DIA BETWEEN {corte_dia_inicio_1} AND {corte_dia_fin_2}"
+      },
+      {
+        "table_name": "DLAB_GEC.TLV_CARGA_ACTUAL",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.TLV_CARGA_ACTUAL WHERE (TIP_CLIENTE IN ('C', 'NC', '2DA', 'PP', 'CON') AND VARIABLE_4 IS NULL) OR (TIP_CLIENTE IN ('EC', 'BPE') AND VARIABLE_3 IS NULL AND VARIABLE_4 IS NULL)"
+      },
+      {
+        "table_name": "DLAB_GEC.TLV_CARGA_ACTUAL_DIGITAL",
+        "query": "SELECT COUNT(*) FROM DLAB_GEC.TLV_CARGA_ACTUAL_DIGITAL WHERE TIP_CLIENTE IN ('DTC', 'DPP', 'DEC', 'DCO') AND VARIABLE_3 IS NULL AND VARIABLE_4 IS NULL"
+      }
+    ]
+  }
+}

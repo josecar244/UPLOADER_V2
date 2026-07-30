@@ -1,0 +1,4570 @@
+{
+    "P001-CALIDAD_SA": {
+        "Area": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "COLA"
+        },
+        "cti_BT_Numero_Dni": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        },
+        "cti_AGENTID": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REG_EV"
+        },
+        "Tipificacion": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIPIFICACION"
+        },
+        "ANI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEF_IN"
+        },
+        "DNIS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEF_OUT"
+        },
+        "Hora local de inicio": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_LLAMADA"
+        },
+        "ID de llamada del conmutador": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CONID"
+        },
+        "TRSV_GC_Cierre": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CIERRE_COMERCIAL"
+        },
+        "TRSV_GC_ManejaObjeciones": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "MANEJA_OBJECIONES"
+        },
+        "TRSV_MIBK_Agradece_Espera": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "AGRADECE_ESPERA"
+        },
+        "TRSV_MIBK_Educa_Cliente": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EDUCA_CLIENTE"
+        },
+        "TRSV_NL_Cons_Inicial": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CONS_INICIAL_TRANSV"
+        },
+        "TRSV_PROT_Despedida": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "DESPEDIDA"
+        },
+        "TRSV_PROT_Saludo": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "SALUDO"
+        },
+        "TRVS_CO_TEA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TEA"
+        },
+        "TRSV_NL_TCEA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TCEA"
+        },
+        "TRVS_NL_LPDP": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "LPDP"
+        },
+        "TRSV_GC_BEN_DispEfectivo": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "DISP_EFECTIVO"
+        },
+        "TRSV_GC_BEN_60meses": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "SESENTA_MESES"
+        },
+        "TRSV_GC_Simulacion": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "SIMULACION"
+        },
+        "TC_CO_CoordinacionTC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "COORD_TC"
+        },
+        "TC_CO_Membresia": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "MEMBRESIA"
+        },
+        "TC_CO_SeguroDesgravamen": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TC_SEG_DESG"
+        },
+        "TC_GC_BEN_Benefit": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BENEFIT"
+        },
+        "TC_GC_BEN_VisaAcces": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VISA_ACCESS"
+        },
+        "TC_GC_BEN_CompraProtegida": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "COMPRA_PROTEGIDA"
+        },
+        "TC_CO_ServiciosAsociados": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "SERV_ASOCIADOS"
+        },
+        "TC_CROSS_SERV_SEG": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "OFF_CROSS_TC"
+        },
+        "PP_CROSS_Seguro": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PP_OFF_SEG"
+        },
+        "PP_CO_SeguroDesgravamen": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PP_SEG_DESG"
+        },
+        "PP_CO_Endoso": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PP_ENDOSO"
+        },
+        "PP_CO_Tasa_Cuota": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PP_TASA_CUOTA"
+        },
+        "PP_CO_Monto": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PP_MONTO"
+        },
+        "PP_CO_ApertCuenta": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PP_AP_CUENTA"
+        },
+        "PP_GC_ManejaObjecion": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PP_MANEJA_OBJECION"
+        },
+        "EC_GC_ManejaObjecion": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_MANEJA_OBJECION"
+        },
+        "EC_GC_LineaParalela": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "LINEA_PARALELA"
+        },
+        "EC_CO_PlazoCuota": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_PLAZO_CUOTA"
+        },
+        "EC_CO_IntMoratorio": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_INTERES_MORATORIO"
+        },
+        "EC_CO_TasaTCEA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_TASA_TCEA"
+        },
+        "EC_CO_DocPoliza": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_DOC_POLIZA"
+        },
+        "EC_GC_SeguroOpcional": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "OFF_SEG_OPCIONAL"
+        },
+        "EC_CROSS_SegContrato": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_CONTRATO_SEGURO"
+        },
+        "CON_GC_Ofrecimiento": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CON_OFRECIMIENTO"
+        },
+        "CON_GC_ManejaObjecion": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CON_MANEJA_OBJECION"
+        },
+        "CON_GC_Beneficios": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CON_BENEFICIOS"
+        },
+        "CON_GC_ComunicaVentajas": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CON_VENTAJAS_PRODUCTO"
+        },
+        "CON_CO_Contrato": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CON_CONTRATO"
+        },
+        "CON_CO_AperturaCta": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CON_APERT_CUENTA"
+        },
+        "SEG_VIVE_GC_Beneficio": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VIVE_BENEFICIOS"
+        },
+        "SEG_360_GC_Beneficio": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "360_BENEFICIOS"
+        },
+        "SEG_VIVE_GC_Ofrecimiento": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VIVE_OFRECIMIENTO"
+        },
+        "SEG_360_GC_Ofrecimiento": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "360_OFRECIMIENTO"
+        },
+        "SEG_VIVE_CO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VIVE_CONTRATO"
+        },
+        "SEG_360_CO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "360_CONTRATO"
+        },
+        "EFECT_CROSS_Seguro": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CROSS_SEG_EFECTIVO"
+        },
+        "TLV_SEGUROS_DERIVA_VIVE_SALUD": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "DERIVA_SEG_VIVE_SALUD"
+        },
+        "TLV_SEGUROS_TARJETAS_360": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "SEG_TARJETA_360"
+        },
+        "TLV_SEGUROS_TARJETAS_360 PREMIUM": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "SEG_TC_360_PREMIUM"
+        },
+        "SEG_VIVE_Contrato": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "SEG_VIVE_SALUD_CO"
+        },
+        "EC_CO_Seguro": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_CO_SEG"
+        },
+        "EC_CROSS_Seguro": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_OFF_SEG"
+        },
+        "SEG_360_GC_ManejoObj.": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "SEG_360_MDO"
+        },
+        "PRT_IL_GC_Ofrecimiento": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "IL_OFRECIMIENTO"
+        },
+        "PRT_UPG_GC_Ofrecimiento": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "UPG_OFRECIMIENTO"
+        },
+        "PRT_TCA_GC_Ofrecimiento": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TCA_OFRECIMIENTO"
+        },
+        "PRT_PA_GC_Ofrecimiento": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PA_OFRECIMIENTO"
+        },
+        "PRT_IL_CO_Contrato": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "IL_CONTRATO"
+        },
+        "PRT_PA_CO_Contrato": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PA_CONTRATO"
+        },
+        "PRT_UPG_CO_Contrato": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "UPG_CONTRATO"
+        },
+        "PRT_TCA_CO_Contrato": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TCA_CONTRATO"
+        },
+        "CD_CO_ApertCuenta": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_APERTURA_CUENTA"
+        },
+        "CD_CO_SeguroDesgravamen": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_SEGURO_DESG"
+        },
+        "CD_CO_VisaAccess": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_VISA_ACCESS"
+        },
+        "CD_CO_Contrato": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_CONTRATO"
+        },
+        "CD_CO_DOCUMENTOS_CONTRACTUALES": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_DOC_CONTRACTUALES"
+        },
+        "CDA_CO_ENDOSO_SEGURO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_ENDOSO_SEGURO"
+        },
+        "CD_CO_PLAZO_CUOTA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_PLAZO_CUOTA"
+        },
+        "CD_CO_TASA_TEA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_TASA_TEA"
+        },
+        "CD_CO_TC_COMPRA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_TC_COMPRA"
+        },
+        "CD_CO_PACross": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_CROSS_PA"
+        },
+        "CD_GC_ManejaObjecion": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_MANEJA_OBJECIONES"
+        },
+        "CD_GC_Cierre": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_CIERRE_COMERCIAL"
+        },
+        "CD_OFF_COMUNICA_VENTAJAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_COMUNICA_VENTAJAS"
+        },
+        "CD - OFF - Tasa Preferencial": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_TASA_PREFERENCIAL"
+        },
+        "RET_CO_COORD_ENTREGA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RET_COORD_ENTREGA"
+        },
+        "RET_CO_EXO_MEMBRESIA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RET_EXO_MEMBRESIA"
+        },
+        "RET_GC_ABONO_MILLAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RET_ABONO_MILLAS"
+        },
+        "RET_GC_CAMBIO_TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RET_CAMBIO_TC"
+        },
+        "RET_GC_DEVOL_COMISIONES": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RET_DEVOL_COMISIONES"
+        },
+        "RET_GC_UNIFICA_LINEAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RET_UNIFICA_LINEAS"
+        },
+        "RET_CON_CO_CD": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RET_CON_COMPRA_DEUDA"
+        },
+        "RET_CON_CO_EVAL_BOLETA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RET_CON_EVAL_BOLETA"
+        },
+        "RET_CON_CO_RET_POR_AMPLI": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RET_CON_RET_POR_AMPLIACION"
+        },
+        "RET_CON_GC_DEVOL_CUOTAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RET_CON_DEVOL_CUOTAS"
+        },
+        "RET_CON_GC_RET_POR_BTASA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RET_CON_RET_POR_BTASA"
+        },
+        "RET_CON_GC_SOL_CANCELACION": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RET_CON_RET_SOL_CANCELACION"
+        },
+        "RET_CON_GC_SOL_CRONOG_PAGO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RET_CON_RET_SOL_CRONOGRAMA"
+        },
+        "RET_CON_GC_SOL_DEUDA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RET_CON_RET_SOL_DEUDA_TOTAL"
+        },
+        "RET_CON_GC_SOL_TASA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RET_CON_RET_SOL_TASA"
+        },
+        "BN_NV_Manejo de Objeciones": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BN_MANEJA_OBJECIONES"
+        },
+        "BN_Perfilamiento": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PERFILAMIENTO"
+        },
+        "BN_Levantamiento Informacion": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "LEVANT_INF"
+        },
+        "BN_CO_Cta_Neg": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CO_CTA_NEG"
+        },
+        "BN_CO_Contrato_CT": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CO_CONT_CAP_TRAB"
+        },
+        "BN_CO_Contrato_NA_A": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CO_CONT_NA_AGIL"
+        },
+        "BN_CO_Contrato_NA_ACD": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CO_CONT_NA_AGIL_CD"
+        },
+        "BNC_GC_IziYa": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNC_IZIPAY_YA"
+        },
+        "BNC_GC_IziMigra": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNC_IZI_MIGRA"
+        },
+        "BNC_GC_IziVentaNueva": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNC_IZI_VENTA_NUEVA"
+        },
+        "BNC_GC_PagoServicio": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNC_PAGO_SERVICIO"
+        },
+        "BNC_GC_PagoSunat": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNC_PAGO_SUNAT"
+        },
+        "BNC_GC_PagoPlanilla": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNC_PAGO_PLANILLAS"
+        },
+        "BNC_GC_Trading": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNC_TRADING"
+        }
+    },
+    "P002-LPDP": {
+        "TRSV_NL_LPDP_ACEPTA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VARIABLE_3"
+        },
+        "TRVS_NL_LPDP_ACTUAL": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VARIABLE_1"
+        },
+        "TRSV_NL_Cons_Aceptado": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VARIABLE_2"
+        },
+        "ANI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEFONO"
+        },
+        "DNIS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNIS"
+        },
+        "Area": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "COLA"
+        },
+        "cti_BT_Numero_Dni": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CODDOC"
+        },
+        "cti_AGENTID": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REG_USUARIO"
+        },
+        "Tipificacion": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIPIFICACION"
+        },
+        "Hora local de inicio": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_HORA"
+        },
+        "ID de llamada del conmutador": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "ID_LLAMADA"
+        }
+    },
+    "P003-CD40K": {
+        "REG_EJECUTIVO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REG_EJECUTIVO"
+        },
+        "DNI_CLIENTE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI_CLIENTE"
+        },
+        "CD_BANCO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CD_BANCO"
+        },
+        "CD_NUMERO_TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CD_NUMERO_TC"
+        },
+        "CD_MONTO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CD_MONTO"
+        },
+        "LINEA PARALELA": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "LINEA PARALELA"
+        },
+        "Modificado": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "Modificado"
+        },
+        "Creado": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "Creado"
+        },
+        "Creado por": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "Creado por"
+        },
+        "Modificado por": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "Modificado por"
+        }
+    },
+    "P004-ACC_TOMADA": {
+        "CODIGO_NTD": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CODIGO_NTD"
+        },
+        "REGISTRO_SV": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REGISTRO_SV"
+        },
+        "REGISTRO_EV": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REGISTRO_EV"
+        },
+        "DNI_CLIENTE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI_CLIENTE"
+        },
+        "ACCION_TOMADA": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "ACCION_TOMADA"
+        },
+        "STATUS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "STATUS"
+        },
+        "OBSERVACIONES": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "OBSERVACIONES"
+        },
+        "Creado": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_CREADO"
+        }
+    },
+    "P005-RECLAMOS": {
+        "ID": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "ID"
+        },
+        "ID_RECLAMO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "ID_RECLAMO"
+        },
+        "FECHA_INGRESO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_REGISTRO"
+        },
+        "DNI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        },
+        "CLIENTE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CLIENTE"
+        },
+        "REG_EJECUTIVO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REG_EJECUTIVO"
+        },
+        "PRODUCTO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "PRODUCTO"
+        },
+        "FECHA_ING_PROD": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_VENTA"
+        },
+        "TIPO_RECLAMO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIPO_RECLAMO"
+        },
+        "CONCLUSION_RECLAMO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CONCLUSION_RECLAMO"
+        },
+        "CONCLUSION_PROCEDE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CONCLUSION_PROCEDE"
+        },
+        "DETALLE_RECLAMO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DETALLE_RECLAMO"
+        },
+        "DETALLE_NO_PROCEDE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DETALLE_NO_PROCEDE"
+        },
+        "Fecha_Modificacion": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "Fecha_Modificacion"
+        },
+        "V.B.": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "VB"
+        },
+        "MONTO_RECLAMO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "MONTO_RECLAMO"
+        },
+        "AUDIO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "AUDIO"
+        },
+        "AREA": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "AREA"
+        },
+        "FECHA_ENVIO_CORREO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_ENVIO_CORREO"
+        },
+        "CONCLUSION_NO_PROCEDE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CONCLUSION_NO_PROCEDE"
+        },
+        "CANT_ENVIOS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CANT_ENVIOS"
+        },
+        "GESTIONADO_01": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "GESTIONADO_01"
+        },
+        "GESTIONADO_02": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "GESTIONADO_02"
+        },
+        "GESTIONADO_POR": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "GESTIONADO_POR"
+        },
+        "GESTIONADO_POR2": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "GESTIONADO_POR2"
+        },
+        "DEVUELTO_MOTIVO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DEVUELTO_MOTIVO"
+        },
+        "TIPOLOGIA_RECLAMO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIPOLOGIA_RECLAMO"
+        },
+        "Modificado": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "Modificado"
+        },
+        "Creado": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "Creado"
+        },
+        "Creado por": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "Creado_por"
+        },
+        "Modificado por": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "Modificado_por"
+        },
+        "Creado por1": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "Creado_por1"
+        },
+        "Creado1": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "Creado1"
+        },
+        "Modificado por1": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "Modificado_por1"
+        },
+        "Modificado1": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "Modificado1"
+        }
+    },
+    "P006-CC_VALIDACIONES": {
+        "CONVERSATIONID": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CONVERSATIONID"
+        },
+        "participantStartTime": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "participantStartTime"
+        },
+        "RESULTADO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "RESULTADO"
+        }
+    },
+    "P007-CONSULTAS_BT": {
+        "Activación de TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Activación_TC"
+        },
+        "Actualización de datos": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "ActualizaciónDatos"
+        },
+        "Afiliación clave SMS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Afiliación_clave_SMS"
+        },
+        "AFP_Covid": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "AFP_Covid"
+        },
+        "Alcancia": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Alcancia"
+        },
+        "Alertas_fraudulentas": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Alertas_fraudulentas"
+        },
+        "Anulación TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Anulación_TC"
+        },
+        "Apertura Cuenta_Ah": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Apertura_Cuenta_Ah"
+        },
+        "Atención clientes_ Estado de emergencia": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Atención_clientes_EstadoEmergencia"
+        },
+        "Banca empresa": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Banca_Empresa"
+        },
+        "Biometría Facial": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Biometría_Facial"
+        },
+        "Bloqueo TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Bloqueo_TC"
+        },
+        "Bloqueo TD": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Bloqueo_TD"
+        },
+        "Bloqueo UPF": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Bloqueo_UPF"
+        },
+        "Cambio de operador": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Cambio_Operador"
+        },
+        "Cancelación Cuenta_Ah": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Cancelación_Cuenta_Ah"
+        },
+        "Cheques": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Cheques"
+        },
+        "Clave dinámica": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Clave_Dinámica"
+        },
+        "Cliente Viajero": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Cliente_Viajero"
+        },
+        "Compensación Deuda": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Compensación_Deuda"
+        },
+        "Comprobante pago electronico": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Comprobante_Pago_Electronico"
+        },
+        "Condiciones_Ah": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Condiciones_Ah"
+        },
+        "Constancia de bloqueo": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Constancia_Bloqueo"
+        },
+        "Constancia de no adeudo": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Constancia_No_adeudo"
+        },
+        "Consulta CTS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Consulta_CTS"
+        },
+        "Consulta tasas de interés_TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Consulta_tasas_TC"
+        },
+        "Convenios": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Convenios"
+        },
+        "Coordinación de TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Coordinación_TC"
+        },
+        "Cuadre EECC_sin covid": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Cuadre_EECC_sin_covid"
+        },
+        "Cuenta Digital": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Cuenta_Digital"
+        },
+        "Derivación a Cobranzas": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Derivación_Cobranzas"
+        },
+        "Derivación a Tienda": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Derivación_Tienda"
+        },
+        "Desafiliación Banca celular": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Desafiliación_Banca_Celular"
+        },
+        "Desafiliación seguros": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Desafiliación_seguros"
+        },
+        "Desb. Prevent. /Sobreend.": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Desb_Prevent_Sobreendamiento"
+        },
+        "Deuda total TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Deuda_total_TC"
+        },
+        "Devolución Saldo a Favor": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Devolución_Saldo_a_Favor"
+        },
+        "Duplicado de cronograma Hip/Veh/PPe": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Duplicado_Cronograma_Hip_Veh_PPE"
+        },
+        "Duplicado EC_Ah": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Duplicado_EC_Ah"
+        },
+        "Educación canales App/BPI": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Educación_canales_App_BPI"
+        },
+        "Exoneración de cobro": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Exoneración_de_cobro"
+        },
+        "Exoneración Membresía": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Exoneración_Membresía"
+        },
+        "Exp_Insatisfacción": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Exp_Insatisfacción"
+        },
+        "Facilidades de pago CHIP_Covid": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Facilidades_de_pago_CHIP_Covid"
+        },
+        "Facilidades de pago VEH/PP_Covid": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Facilidades_de_pago_VEH_PP_Covid"
+        },
+        "FECHA PAGO/CIERRE": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Fecha_Pago_Cierre"
+        },
+        "Fondos Mutuos": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Fondos_Mutuos"
+        },
+        "Importe de pago": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Importe_de_pago"
+        },
+        "Importe retenido TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Importe_retenido_TC"
+        },
+        "Importe retenido TD": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Importe_retenido_TD"
+        },
+        "Inadecuada Atención": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Inadecuada_Atención"
+        },
+        "Incidencia/Inconvenientes APP": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Incidencia_Inconvenientes_APP"
+        },
+        "Info. campañas/promociones_TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Info_campañas_promociones_TC"
+        },
+        "Info. dirección Teléfono /Tienda": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Info_dirección_Teléfono_Tienda"
+        },
+        "Interbank Benefit": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Interbank_Benefit"
+        },
+        "Interbank LEGO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Interbank_LEGO"
+        },
+        "Interés moratorio_TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Interés_moratorio_TC"
+        },
+        "Límite Transaccional": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Límite_Transaccional"
+        },
+        "Modificación de Plazo": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Modificación_de_Plazo"
+        },
+        "Movimientos TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Movimientos_TC"
+        },
+        "Movimientos TD": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Movimientos_TD"
+        },
+        "N°Cta./CCI/Swift": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "N_Cta_CCI_Swift"
+        },
+        "No recepcion de EECC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "No_recepcion_de_EECC"
+        },
+        "Orden de Pago": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Orden_de_Pago"
+        },
+        "Pago anticipado/Adelanto de cuotas": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Pago_anticipado_Adelanto_de_cuotas"
+        },
+        "Pago automático_Afiliación": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Pago_automático_Afiliación"
+        },
+        "Pago automático_Desafiliación": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Pago_automático_Desafiliación"
+        },
+        "Pase a cuotas": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Pase_a_cuotas"
+        },
+        "Paypal": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Paypal"
+        },
+        "Plin": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Plin"
+        },
+        "Priority Pass": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Priority_Pass"
+        },
+        "Protocolo Bienvenida": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Protocolo_Bienvenida"
+        },
+        "Protocolo_Despedida": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Protocolo_Despedida"
+        },
+        "Reclamo o Queja Otros": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Reclamo_Queja_Otros"
+        },
+        "Reclamo o Queja_Ah": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Reclamo_Queja_Ah"
+        },
+        "Reclamo o Queja_TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Reclamo_Queja_TC"
+        },
+        "Remesas": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Remesas"
+        },
+        "Reprogramación Deuda TC_Covid": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Reprogramación_Deuda_TC_Covid"
+        },
+        "Restricción cuenta_Ah": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Restricción_cuenta_Ah"
+        },
+        "Saldo disponible Efectivo": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Saldo_disponible_Efectivo"
+        },
+        "Score crediticio": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Score_crediticio"
+        },
+        "Seguro Desempleo_disconf.": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Seguro_Desempleo_disconf"
+        },
+        "Seguro Desgravamen TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Seguro_Desgravamen_TC"
+        },
+        "Servicios Asociados": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Servicios_Asociados"
+        },
+        "Solicitud o Reposición TD_Ah": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Solicitud_Reposición_TD_Ah"
+        },
+        "Sorteo Cta. Millonaria": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Sorteo_Cta_Millonaria"
+        },
+        "Speech Encuesta": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Speech_Encuesta"
+        },
+        "Status pedidos y reclamos": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Status_pedidos_reclamos"
+        },
+        "Status vencidos P&R": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Status_vencidos_PyR"
+        },
+        "Tarjeta Access digital": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Tarjeta_Access_digital"
+        },
+        "TC_Adicional": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TC_Adicional"
+        },
+        "Tipo de cambio ($)": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Tipo_de_Cambio"
+        },
+        "Transacción mal o no procesada": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Transacción_mal_no_procesada"
+        },
+        "Transferencia internacional": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Transferencia_internacional"
+        },
+        "Transferencias Interbancarias": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Transferencias_Interbancarias"
+        },
+        "Tunki": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Tunki"
+        },
+        "Uso Banca celular/App": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "Uso_Banca_celular_App"
+        },
+        "VCAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VCAS"
+        },
+        "VCAS_REPORTE_P": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VCAS_REPORTE_P"
+        },
+        "Datos personalizados 5": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REGISTRO"
+        },
+        "Datos personalizados 3": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DOCUMENTO"
+        },
+        "Datos personalizados 7": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "FECHA"
+        },
+        "ID de llamada del conmutador": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CONID"
+        }
+    },
+    "P008-INSIGHT_07_EVALUATIONS": {
+        "agentId": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "agentId"
+        },
+        "agentName": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "agentName"
+        },
+        "answerId": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "answerId"
+        },
+        "answerText": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "answerText"
+        },
+        "assignedDate": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "assignedDate"
+        },
+        "changedDate": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "changedDate"
+        },
+        "conversationId": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "conversationId"
+        },
+        "conversationStartTime": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "conversationStartTime"
+        },
+        "evaluationComments": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "evaluationComments"
+        },
+        "evaluationFormName": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "evaluationFormName"
+        },
+        "evaluationId": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "evaluationId"
+        },
+        "evaluationFormid": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "evaluationFormid"
+        },
+        "evaluatorId": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "evaluatorId"
+        },
+        "evaluatorName": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "evaluatorName"
+        },
+        "questionGroupName": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "questionGroupName"
+        },
+        "questionText": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "questionText"
+        },
+        "questionGroupId": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "questionGroupId"
+        },
+        "questionid": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "questionid"
+        },
+        "queueName": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "queueName"
+        },
+        "releaseDate": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "releaseDate"
+        }
+    },
+    "P009-INSIGHT_01_TRAFICO_GENESYS": {
+        "conversationId": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "conversationId"
+        },
+        "ani": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "ani"
+        },
+        "DNIS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNIS"
+        },
+        "DNI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        },
+        "username": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "username"
+        },
+        "sessionstarttime": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "sessionstarttime"
+        },
+        "sessionendtime": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "sessionendtime"
+        },
+        "TIP_CLIENTE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIP_CLIENTE"
+        }
+    },
+    "P010-INSIGHT_02_CONV_ATTRIBUTES": {
+        "conversationId": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "conversationId"
+        },
+        "participantid": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "participantid"
+        },
+        "participantname": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "participantname"
+        },
+        "key": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "keys"
+        },
+        "value": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "valor"
+        },
+        "externalcontactid": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "externalcontactid"
+        },
+        "participantEndTime": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "participantendtime"
+        },
+        "participantStartTime": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "participantstarttime"
+        },
+        "purpose": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "purpose"
+        },
+        "userid": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "userid"
+        }
+    },
+    "P011-INSIGHT_03_DERIVA_BT": {
+        "conversationId": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "conversationId"
+        },
+        "DNI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        },
+        "ANI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "ANI"
+        },
+        "DNIS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNIS"
+        },
+        "QUEUENAME": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "QUEUENAME"
+        },
+        "PARTICIPANTNAME": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "PARTICIPANTNAME"
+        },
+        "SESSIONSTARTTIME": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "SESSIONSTARTTIME"
+        },
+        "SESSIONENDTIME": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "SESSIONENDTIME"
+        },
+        "originatingdirection": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIPO_LLAMADA"
+        }
+    },
+    "P012-INSIGHT_04_CLOUD_MARCA_TRANSF": {
+        "conversationId": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "conversationId"
+        },
+        "v_ip": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "v_ip"
+        },
+        "intentos": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "intentos"
+        },
+        "DNI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        },
+        "ANI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "ANI"
+        },
+        "DNIS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNIS"
+        },
+        "OPCION_IVR": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "OPCION_IVR"
+        },
+        "QUEUENAME": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "QUEUENAME"
+        },
+        "PARTICIPANTNAME": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "PARTICIPANTNAME"
+        },
+        "SESSIONSTARTTIME": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "SESSIONSTARTTIME"
+        }
+    },
+    "P013-INSIGHT_05_BT_TRANSFERENCIA": {
+        "SESSIONINDEX": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "SESSIONINDEX"
+        },
+        "conversationId": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "conversationId"
+        },
+        "PURPOSE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "PURPOSE"
+        },
+        "QUEUENAME": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "QUEUENAME"
+        },
+        "USERNAME": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "USERNAME"
+        },
+        "WRAPUPCODENAME": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "WRAPUPCODENAME"
+        },
+        "PARTICIPANTNAME": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "PARTICIPANTNAME"
+        },
+        "TRANSFERTO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TRANSFERTO"
+        },
+        "TRANSFERTOPURPOSE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TRANSFERTOPURPOSE"
+        },
+        "disconnecttype": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "disconnecttype"
+        },
+        "intentos": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "intentos"
+        },
+        "sessionduration": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "sessionduration"
+        },
+        "originatingdirection": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "originatingdirection"
+        },
+        "dnis": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "dnis"
+        }
+    },
+    "P014-INSIGHT_06_IVR_VENTAS": {
+        "conversationId": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "conversationId"
+        },
+        "v_ip": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "v_ip"
+        },
+        "intentos": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "intentos"
+        },
+        "DNI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        },
+        "ANI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "ANI"
+        },
+        "DNIS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNIS"
+        },
+        "originatingdnis": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "originatingdnis"
+        },
+        "QUEUENAME": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "QUEUENAME"
+        },
+        "PARTICIPANTNAME": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "PARTICIPANTNAME"
+        },
+        "SESSIONSTARTTIME": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "SESSIONSTARTTIME"
+        }
+    },
+    "P016-MAESTRA_PESOS_PC": {
+        "PLANTILLA": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "PLANTILLA"
+        },
+        "GRUPO_PREGUNTAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "GRUPO_PREGUNTAS"
+        },
+        "PREGUNTA": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "PREGUNTA"
+        },
+        "PREG_VALIDA": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PREG_VALIDA"
+        },
+        "PREG_CRITICA": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PREG_CRITICA"
+        },
+        "CANT_PREGUNTAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CANT_PREGUNTAS"
+        },
+        "PESO_GRUPO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PESO_GRUPO"
+        },
+        "PESO_PREGUNTA": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PESO_PREGUNTA"
+        }
+    },
+    "P017-ANALISIS_CONVENIOS": {
+        "KEY": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "KEY"
+        },
+        "PUNTUACION": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PUNTUACION"
+        },
+        "CONTRATO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CONTRATO"
+        },
+        "INVITA_PIN_PAN": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "INVITA_PIN_PAN"
+        },
+        "CE": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CE"
+        },
+        "EXPLICA_PRODUCTO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EXPLICA_PRODUCTO"
+        },
+        "ANI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "ANI"
+        },
+        "COLA": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "COLA"
+        },
+        "CU": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CU"
+        },
+        "DNI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        },
+        "REGISTRO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REGISTRO"
+        },
+        "METAL": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "METAL"
+        },
+        "FECHA": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA"
+        },
+        "TIPIFICACION": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIPIFICACION"
+        },
+        "DIRECCION": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DIRECCION"
+        },
+        "TELEFONO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEFONO"
+        },
+        "DURACION_SEG": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INT",
+            "Nuevo nombre": "DURACION_SEG"
+        },
+        "NOM_EV": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "NOM_EV"
+        },
+        "CONID": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CONID"
+        },
+        "PALABRAS_CLAVE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "PALABRAS_CLAVE"
+        }
+    },
+    "P019-SA_ANALISIS_PP": {
+        "Datos personalizados 1": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "COLA"
+        },
+        "Datos personalizados 3": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        },
+        "Datos personalizados 5": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REG_EV"
+        },
+        "Datos personalizados 8": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIPIFICACION"
+        },
+        "ANI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEF_IN"
+        },
+        "DNIS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEF_OUT"
+        },
+        "Hora local de inicio": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_LLAMADA"
+        },
+        "ID de llamada del conmutador": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CONID"
+        },
+        "PP_CO_Reg_Reenganche": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "DEBITO_AUTOM"
+        },
+        "PP_CO_Cta_Sueldo": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CTA_SUELDO"
+        }
+    },
+    "P020-SA_NO_VENTA": {
+        "Area": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "COLA"
+        },
+        "cti_BT_Numero_Dni": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        },
+        "cti_AGENTID": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REG_EV"
+        },
+        "Tipificacion": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIPIFICACION"
+        },
+        "Dirección": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DIRECCION"
+        },
+        "Duración (segundos)": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "DURACION"
+        },
+        "ANI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEF_IN"
+        },
+        "DNIS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEF_OUT"
+        },
+        "Hora local de inicio": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_LLAMADA"
+        },
+        "ID de llamada del conmutador": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CONID"
+        },
+        "Tiempo de conversación total del cliente (seg)": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "T_HABLADO_CLIENTE"
+        },
+        "Tiempo de conversación total del empleado (seg)": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "T_HABLADO_EV"
+        },
+        "Tiempo total de conversación fuera de plazo (seg)": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "T_HABLADO_SUPERPUESTO"
+        },
+        "Tiempo total en silencio (seg)": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "T_SILENCIO"
+        },
+        "TLV - Ventas - Respuesta en la llamada": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "JRNY_RESP_LLAMADA"
+        },
+        "TLV - Ventas - Llamadas CE": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "JRNY_CONTACTO_EFECTIVO"
+        },
+        "TLV - Ventas - Llamadas con Titular disponible": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "JRNY_TITULAR_DISPONIBLE"
+        },
+        "TLV - Exp.Compra - Conecta": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "JRNY_CONECTA_CLIENTE"
+        },
+        "TLV - Ventas - Explicación del producto": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "JRNY_EXPLICA_PRODUCTO"
+        },
+        "TRSV_GC_Cierre": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "JRNY_PROPONE_CIERRE"
+        },
+        "TLV - Exp. de Compra - Lo pensará - COVID": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CL_LO_PENSARA"
+        },
+        "Interesado en PPE": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CL_INTERESADO"
+        },
+        "TLV - Exp.Compra - CL - OCUPADO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CL_OCUPADO"
+        },
+        "TLV - Exp. Compra - Cliente Critico": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CL_CRITICO"
+        },
+        "TLV - Experiencia - Llamada Insistente": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CL_LLAMADA_INSISTENTE"
+        },
+        "TLV - Exp.Compra - Denunciar INDECOPI": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CL_CRITICO_INDECOPI"
+        },
+        "TLV - Exp.Compra - Ningún coste adicional": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_SIN_COSTO"
+        },
+        "TLV - Exp.Compra - Abordaje - Ágil y rápido": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_AGIL_RAPIDO"
+        },
+        "TLV - Exp. Compra - Abordaje - Línea Paralela": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_LINEA_PARALELA"
+        },
+        "TLV - Exp.Compra - Abordaje - Sin necesidad doc.": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_SIN_DOCUMENTOS"
+        },
+        "TLV - Exp.Compra - Abordaje - Simulación": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_SIMULACION"
+        },
+        "TLV - Exp. de Compra - PPE - MDO - Sin interes": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PP_MDO_SIN_INTERES"
+        },
+        "TLV - Exp. de Compra - PPE - MDO - Lo pensará": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PP_MDO_LO_PENSARA"
+        },
+        "TLV - Exp. de Compra - PPE - MDO - Tasa alta": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PP_MDO_TASA"
+        },
+        "TLV - Exp. de Compra - PPE - MDO - Monto": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PP_MDO_MONTO"
+        },
+        "TLV - Exp. de Compra - PPE - MDO - Otro producto": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PP_MDO_TIENE_OTRO_PROD"
+        },
+        "TLV - Exp. de Compra - PPE - MDO - Tiempo": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PP_MDO_PLAZO"
+        },
+        "TLV - Exp. de Compra - PPE - MDO - TODAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "PP_MDO_TODAS"
+        },
+        "TLV - Exp. Compra - EC - MDO - Tasa alta": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_MDO_TASA"
+        },
+        "TLV - Exp. Compra - EC - Interes cliente": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_CLIENTE_INTERESADO"
+        },
+        "TLV - Exp. Compra - EC - MDO - Lo pensará": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_MDO_LO_PENSARA"
+        },
+        "TLV - Exp. Compra - EC - MDO - Monto": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_MDO_BAJO_MONTO"
+        },
+        "TLV - Exp. Compra - EC - MDO - Otro producto": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_MDO_TIENE_OTRO_PROD"
+        },
+        "TLV - Exp. Compra - EC - MDO - Sin interes": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_MDO_SIN_INTERES"
+        },
+        "TLV - Exp. Compra - EC - MDO - Plazo": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_MDO_PLAZO_LARGO"
+        },
+        "TLV - Exp. Compra - EC - MDO - TODAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_MDO_TODAS"
+        },
+        "EC_GC_LineaParalela": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_BNF_LINEA_PARALELA"
+        },
+        "TLV - Exp. de Compra - PPE - Interes cliente": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CL_INTERESADO_EFECT"
+        },
+        "TLV - Exp. de Compra - NAC - Tasa muy alta": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_TASA_ALTA"
+        },
+        "TLV - Exp. de Compra - NAC - LINEA DE CREDITO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_LINEA_BAJA"
+        },
+        "TLV - Exp. de Compra - NAC - MALA EXPERIENCIA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_MALA_EXPERIENCIA"
+        },
+        "TLV - Exp. de Compra - NAC - deudas por pagar": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_TIENE_DEUDAS"
+        },
+        "TLV - Exp. de Compra - NAC - Productos en otro banco": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_TC_OTRO_BCO"
+        },
+        "TLV - Exp. de Compra - NAC - Ya tiene TC IBK": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_TIENE_TC_IBK"
+        },
+        "TLV - Exp.Compra - TC - OFF - Disponibilidad efectivo": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TC_BNF_DISP_EFECTIVO"
+        },
+        "TLV - Exp.Compra - TC - OFF - Millas Benefit": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TC_BNF_MILLAS_BENEFIT"
+        },
+        "TLV - Exp.Compra - TC - OFF - Cero Mantenimiento": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TC_BNF_CERO_MNTO"
+        },
+        "TLV - Exp.Compra - TC - OFF - 55 dias": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TC_BNF_55_DIAS"
+        },
+        "TLV - Exp.Compra - TC - OFF - Membresia": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TC_BNF_EXON_MEMBRESIA"
+        },
+        "TLV - Exp.Compra - TC - OFF - Priority Pass": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TC_BNF_PRIORITY_PASS"
+        },
+        "TLV - Exp.Compra - TC - OFF - Sin documentacion": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TC_BNF_SIN_DOCUMENTACION"
+        },
+        "TLV - Exp.Compra - TC - OFF - Benefit - Acumulación": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TC_BNF_ACUMULA_MILLAS"
+        },
+        "TLV - Exp.Compra - TC - OFF - Exclusividad": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TC_BNF_TC_EXCLUSIVA"
+        },
+        "TLV - Exp.Compra - TC - OFF - Compras por internet": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TC_BNF_COMPRAS_WEB"
+        },
+        "TLV - Exp.Compra - TC - OFF - Linea de credito": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TC_BNF_LINEA_CREDITO"
+        },
+        "TLV - Exp. de Compra - TC - Interes cliente": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TC_CLIENTE_INTERESADO"
+        },
+        "TLV - Exp. Compra - TC - OBJ - Sin interés": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_SIN_INTERES"
+        },
+        "TLV - Exp. Compra - TC - MDO - Sin interes": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TC_MDO_SIN_INTERES"
+        },
+        "TLV - Exp.Compra - Abordaje - Hist. Crediticio_TODO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_HIST_CREDITICIO"
+        },
+        "TLV - Exp.Compra - Abordaje - Proyecto_TODO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_PROYECTO"
+        },
+        "TLV - Exp.Compra - Abordaje - Reenganche_TODO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EFECTIVO_BNF_REENGANCHE"
+        },
+        "TLV - Exp. Compra - Abordaje - Monto a Elegir": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EFECTIVO_MDO_MONTO_ALTO"
+        },
+        "TLV - Exp. Compra - Telefono no corresponde": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CL_TLF_NO_CORRESPONDE"
+        },
+        "CON - OFF - Hist. Crediticio": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CON_BNF_HIST_CRED"
+        },
+        "CON - OFF - Tasa Preferencial": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CON_BNF_TASA_PREFERENCIAL"
+        },
+        "CON - OFF - Ágil y rápido": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CON_BNF_AGIL_RAPIDO"
+        },
+        "TLV - Exp.Compra - CON - OFF - Proyecto": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CON_BNF_PROYECTO"
+        },
+        "CON - OFF - Dcto. Planilla": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CON_BNF_DCTO_PLANILLA"
+        },
+        "CON - Ampliación": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CON_BNF_AMPLIACION"
+        },
+        "CON - OFF - Sin necesidad doc": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CON_BNF_SIN_DOCUMENTOS"
+        },
+        "TLV - Exp.Compra - CD - OFF - Hist. Crediticio": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_BNF_HIST_CREDITICIO"
+        },
+        "TLV - Exp.Compra - CD - OFF - Sin necesidad doc": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_BNF_SIN_DOCUMENTOS"
+        },
+        "TLV - Exp.Compra - CD - OFF - Ágil y rápido": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CD_BNF_AGIL_RAPIDO"
+        },
+        "TLV - Exp. de Compra - NAC - Sin trabajo - Coyuntura": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_DESEMPLEADO"
+        },
+        "TLV - Exp. Compra - RET - NAC - ATM RETIENE TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_PROBLEMAS_ATM"
+        },
+        "TLV - Exp. Compra - RET - NAC - COBRO COMISIONES": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_COBRO_COMISIONES"
+        },
+        "TLV - Exp. Compra - RET - NAC - COBRO MEMB.": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_COBRO_MEMBRESIA"
+        },
+        "TLV - Exp. Compra - RET - NAC - CONSUMO NO RECONOCIDO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_CONSUMO_NO_REC"
+        },
+        "TLV - Exp. Compra - RET - NAC - COYUNTURA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_COYUNTURA"
+        },
+        "TLV - Exp. Compra - RET - NAC - CREDITO OTROS BANCOS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_PROD_OTRO_BCO"
+        },
+        "TLV - Exp. Compra - RET - NAC - INTERESES GENERADOS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_INTERESES"
+        },
+        "TLV - Exp. Compra - RET - NAC - LINEA DE CREDITO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_LINEA_CREDITO"
+        },
+        "TLV - Exp. Compra - RET - NAC - MALA EXPERIENCIA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_MALA_EXPERIENCIA"
+        },
+        "TLV - Exp. Compra - RET - NAC - NO CAMPAÑA DEVOLUCIÓN": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_CAMP_DEVOL"
+        },
+        "TLV - Exp. Compra - RET - NAC - NO RECONOCE VENTA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_NO_ACEPTO_TC"
+        },
+        "TLV - Exp. Compra - RET - NAC - NO RESPETA COORD.": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_NO_MALA_COORD"
+        },
+        "TLV - Exp. Compra - RET - NAC - NO USO TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_NO_USA_TC"
+        },
+        "TLV - Exp. Compra - RET - NAC - OTRAS TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_TIENE_OTRAS_TC"
+        },
+        "TLV - Exp. Compra - RET PILOTO - Motivos personales": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_MOTIVOS_PERSONALES"
+        },
+        "TLV - Exp. Compra - RET - NAC - SIN BENEFICIOS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_SIN_BENEFICIOS"
+        },
+        "TLV - Exp. Compra - RET - NAC - Priority Pass": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_PRIORITY_PASS"
+        },
+        "TLV - Exp. Compra - RET - NAC - VISA ACCES DIGITAL": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_VISA_ACCESS_DIG"
+        },
+        "RET_NAC_MEMBRESIA_SEGUROS_PP": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_MEMBRESIA_SEGUROS_PP"
+        },
+        "RET_NAC_VIAJE_EXTERIOR_ZONA_RURAL": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_VIAJE_EXTERIOR_ZONA_RURAL"
+        },
+        "RET_NAC_NO_USO_NO_NECESITA_ENDEUDAMIENTO_PERSONAL": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_NO_USO_NO_NECE_ENDEU_PERSONAL"
+        },
+        "RET_NAC_CREDITO_OTROS_BANCOS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_CREDITO_OTROS_BANCOS"
+        },
+        "RET_NAC_LINEA_BAJA_SIN_IL": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_LINEA_BAJA_SIN_IL"
+        },
+        "RET_NAC_SERVICIO_APP_CAMPANAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_SERVICIO_APP_CAMPANAS"
+        },
+        "RET_NAC_MEJOR OFERTA OTROS BANCOS_MAS BENEFICIOS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_MEJOR_OFERTA_OB_MAS_BENEF"
+        },
+        "RET_NAC_CONSUMO NO RECONOCIDO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_CONSUMO_NO_RECONOCIDO"
+        },
+        "RET_NAC_INTERESES_Y_COMISIONES": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_NAC_INTERESES_Y_COMISIONES"
+        },
+        "TLV - Exp. Compra - RET - INDAGACION": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_INDAGA_MOTIVO"
+        },
+        "TLV - Exp. Compra - RET - OFF - abono de millas": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_BNF_ABONO_MILLAS"
+        },
+        "TLV - Exp. Compra - RET - OFF - BENEFICIOS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_BNF_BENEFICIOS"
+        },
+        "TLV - Exp. Compra - RET - OFF - CAMBIO DE TARJETA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_BNF_CAMBIO_TC"
+        },
+        "TLV - Exp. Compra - RET - OFF - DEVOLUCIÓN COMISIONES": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_BNF_DEVOL_COMISIONES"
+        },
+        "TLV - Exp. Compra - RET - OFF - RESPALDO ECONÓMICO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_BNF_RESPALDO_ECONOMICO"
+        },
+        "TLV - Exp. Compra - RET - OFF - EXONERACION MEMBRESIA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_BNF_EXO_MEMBRESIA"
+        },
+        "TLV - Exp. Compra - RET - OFF - NINGÚN CARGO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_BNF_NINGUN_CARGO"
+        },
+        "TLV - Exp. Compra - RET - OFF - PERFIL CL": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_BNF_PERFIL_CLIENTE"
+        },
+        "RTC_CANCELA_SEGURO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_CANCELA_SEGURO"
+        },
+        "TLV - Exp. Compra - RET - OFF - UNIFICACIÓN DE LINEAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RTC_BNF_UNIFICACION_LINEAS"
+        },
+        "RET_CONVENIOS - COBRANZAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_NAC_COBRANZA"
+        },
+        "RET_CONVENIOS - COMPRA DE DEUDA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_NAC_CD"
+        },
+        "RET_CONVENIOS - CONSULTAS GENERALES": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_NAC_CONS_GENERALES"
+        },
+        "RET_CONVENIOS - DEVOLUCIÓN DE CUOTAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_NAC_DEVOL_CUOTAS"
+        },
+        "RET_CONVENIOS - INFORMACION DE CAMPAÑAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_NAC_INFO_CAMPAÑA"
+        },
+        "RET_CONVENIOS - MAYOR IMPORTE": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_NAC_MONTO_BAJO"
+        },
+        "RET_CONVENIOS - MEDIOS PROPIOS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_NAC_CANCELA_MEDIOS_PROPIOS"
+        },
+        "RET_CON_NAC_MALA EXPERIENCIA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_NAC_MALA_EXPERIENCIA"
+        },
+        "RET_CON_NAC_COMPRADEUDA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_NAC_COMPRA_DEUDA"
+        },
+        "RET_CONVENIOS - OFF MAVERICK": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_BNF_MAVERIC"
+        },
+        "RET_CONVENIOS - RETENCIONES POR AMPLIACIÓN": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_BNF_AMPLIACION"
+        },
+        "RET_CONVENIOS - PEDIDOS Y RECLAMOS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_CONSULTA_PYR"
+        },
+        "RET_CONVENIOS - RETENCIONES POR BAJA DE TASA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_BNF_BAJA_TASA"
+        },
+        "RET_CONVENIOS - SOLICITUD DE CANCELACION": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_SOL_CANCELACION"
+        },
+        "RET_CONVENIOS - SOLICITUD DE CRONOGRAMA DE PAGOS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_SOL_CRONOGRAMA"
+        },
+        "RET_CONVENIOS - SOLICITUD DE DEUDA TOTAL": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_SOL_DEUDA_TOTAL"
+        },
+        "RET_CONVENIOS - SOLICITUD DE TASA DE INTERES": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_SOL_TASA"
+        },
+        "RET_CONVENIOS - TASA DE INTERES": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "RCO_MDO_TASA"
+        },
+        "SEG_VIVE_GC_Beneficio": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VIVE_BENEFICIOS"
+        },
+        "SEG_360_GC_Beneficio": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "360_BENEFICIOS"
+        },
+        "SEG_VIVE_GC_Ofrecimiento": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VIVE_OFRECIMIENTO"
+        },
+        "SEG_360_GC_Ofrecimiento": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "360_OFRECIMIENTO"
+        },
+        "SEG_VIVE_CO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VIVE_CONTRATO"
+        },
+        "SEG_360_CO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "360_CONTRATO"
+        },
+        "EFECT_CROSS_Seguro": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CROSS_SEG_EFECTIVO"
+        },
+        "TLV_SEGUROS_DERIVA_VIVE_SALUD": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "DERIVA_SEG_VIVE_SALUD"
+        },
+        "TLV_SEGUROS_TARJETAS_360": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "SEG_TARJETA_360"
+        },
+        "TLV_SEGUROS_TARJETAS_360 PREMIUM": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "SEG_TC_360_PREMIUM"
+        },
+        "SEG_VIVE_Contrato": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "SEG_VIVE_SALUD_CO"
+        },
+        "EC_CO_Seguro": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_CO_SEG"
+        },
+        "EC_CROSS_Seguro": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "EC_OFF_SEG"
+        },
+        "SEG_360_GC_ManejoObj.": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "SEG_360_MDO"
+        },
+        "VR- Sentiment Dissatisfaction": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VR_EXPERIENCIA_NEGATIVA"
+        },
+        "VR- Sentiment No Dissatisfaction": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VR_EXPERIENCIA_POSITIVA"
+        },
+        "VR- Sentiment No Positive Outcome": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VR_RESULTADO_NEGATIVO"
+        },
+        "VR- Sentiment Positive Outcome": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "VR_RESULTADO_POSITIVO"
+        }
+    },
+    "P021-TELEVENTAS_EJECUTIVOS": {
+        "PERIODO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "PERIODO"
+        },
+        "REG_EJECUTIVO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REG_EJECUTIVO"
+        },
+        "NOM_EJECUTIVO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "NOM_EJECUTIVO"
+        },
+        "REG_SUPERVISOR": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REG_SUPERVISOR"
+        },
+        "NOM_SUPERVISOR": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "NOM_SUPERVISOR"
+        },
+        "REG_JEFE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REG_JEFE"
+        },
+        "NOM_JEFE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "NOM_JEFE"
+        },
+        "EQUIPO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "EQUIPO"
+        },
+        "SUB_EQUIPO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "SUB_EQUIPO"
+        },
+        "SUBGERENTE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "SUBGERENTE"
+        },
+        "TIPO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIPO"
+        },
+        "NOM_EJECUTIVO_OLD": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "NOM_EJECUTIVO_OLD"
+        },
+        "CODIGO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CODIGO"
+        }
+    },
+    "P023-GIRU_RTC": {
+        "PERIODO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "PERIODO"
+        },
+        "NRO TRÁMITE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "NRO_TRAMITE"
+        },
+        "TIPOLOGÍA": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIPOLOGIA"
+        },
+        "CANAL INGRESO SOLICITUD": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CANAL_INGRESO"
+        },
+        "FECHA INGRESO SOLICITUD": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_INGRESO"
+        },
+        "FECHA CIERRE SOLICITUD": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_CIERRE"
+        },
+        "NOMBRE _ASESOR_REGISTRO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "ASESOR_INGRESO"
+        },
+        "COD_ASESOR_REGISTRO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REGISTRO_INGRESO"
+        },
+        "MOTIVO_CLIENTE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "MOTIVO_CLIENTE"
+        },
+        "ESTADO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "ESTADO"
+        },
+        "NRODOC": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        },
+        "CODUNICO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CODUNICO"
+        },
+        "NUMERO_CUENTA": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "NUMERO_CUENTA"
+        },
+        "NROTARJETA": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "NROTARJETA"
+        },
+        "MARCA_TIPO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "MARCA_TIPO"
+        },
+        "DETALLE_MARCA_TIPO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DETALLE_MARCA_TIPO"
+        },
+        "NDS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "NDS"
+        },
+        "SEGMENTO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "SEGMENTO"
+        },
+        "MOTIVO DE ANULACION": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "MOTIVO_ANULACION"
+        },
+        "OFERTA DE RETENCION": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "OFERTA_RETENCION_1"
+        },
+        "NOMBRE_ASESOR_CIERRE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "ASESOR_CIERRE"
+        },
+        "COD_ASESOR_CIERRE": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REGISTRO_CIERRE"
+        },
+        "TIPO DE RESOLUCIÓN": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIPO"
+        }
+    },
+    "P024-SA_NO_VENTA_TC": {
+        "Area": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "COLA"
+        },
+        "cti_BT_Numero_Dni": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        },
+        "cti_AGENTID": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REG_EV"
+        },
+        "Tipificacion": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIPIFICACION"
+        },
+        "Dirección": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DIRECCION"
+        },
+        "Duración (segundos)": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "DURACION"
+        },
+        "ANI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEF_IN"
+        },
+        "DNIS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEF_OUT"
+        },
+        "Hora local de inicio": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_LLAMADA"
+        },
+        "ID de llamada del conmutador": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CONID"
+        },
+        "Tiempo de conversación total del cliente (seg)": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "T_HABLADO_CLIENTE"
+        },
+        "Tiempo de conversación total del empleado (seg)": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "T_HABLADO_EV"
+        },
+        "Tiempo total de conversación fuera de plazo (seg)": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "T_HABLADO_SUPERPUESTO"
+        },
+        "Tiempo total en silencio (seg)": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "T_SILENCIO"
+        },
+        "TLV - Ventas - Respuesta en la llamada": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "JRNY_RESP_LLAMADA"
+        },
+        "TLV - Ventas - Llamadas CE": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "JRNY_CONTACTO_EFECTIVO"
+        },
+        "TLV - Ventas - Llamadas con Titular disponible": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "JRNY_TITULAR_DISPONIBLE"
+        },
+        "TLV - Exp.Compra - Conecta": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "JRNY_CONECTA_CLIENTE"
+        },
+        "TLV - Ventas - Explicación del producto": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "JRNY_EXPLICA_PRODUCTO"
+        },
+        "TRSV_GC_Cierre": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "JRNY_PROPONE_CIERRE"
+        },
+        "TLV - Exp. de Compra - Lo pensará - COVID": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CL_LO_PENSARA"
+        },
+        "TLV - Exp.Compra - Manejo Objeciones": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "MDO_TODOS"
+        },
+        "TRSV_PROT_Despedida": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "DESPEDIDA"
+        },
+        "TC_CROSS_SERV_SEG": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CROSS_SEGURO"
+        },
+        "TLV - Exp.Compra - Ofrecimiento Cross PA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CROSS_PA"
+        },
+        "TLV - Exp.Compra - Ofrecimiento Cross Seguro TC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CROSS_SEG_TC"
+        },
+        "TC_CO_CoordinacionTC": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "COORDINACION_TC"
+        },
+        "TLV - Exp. Compra - Mejora de Plástico": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_MEJORA_PLASTICO"
+        },
+        "TLV - Exp.Compra - TC - OFF - Sin documentacion": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_SIN_DOCUMENTACION"
+        },
+        "TC - Feedback del cliente - No me interesa": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CL_SIN_INTERES"
+        },
+        "TC - Feedback del cliente - Otra tarjeta/Deuda": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_TIENE_OTRA_TC"
+        },
+        "TC - Feedback del cliente - Condiciones de tarjeta": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_CONDICIONES_TC"
+        },
+        "TLV - Exp. de Compra - NAC - No usa tarjetas": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_NO_USA_TC"
+        },
+        "TLV - Exp. de Compra - NAC - Tasa muy alta": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_TASA_ALTA"
+        },
+        "TLV - Exp. de Compra - NAC - LINEA DE CREDITO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_LÍNEA_TC"
+        },
+        "TLV - Exp. de Compra - NAC - LO PENSARÁ": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_LO_PENSARA"
+        },
+        "TLV - Exp. de Compra - NAC - MALA EXPERIENCIA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_MALA_EXPERIENCIA"
+        },
+        "TLV - Exp. de Compra - NAC - deudas por pagar": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_DEUDAS_POR_PAGAR"
+        },
+        "TLV - Exp. de Compra - NAC - Productos en otro banco": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_PRODUCTOS_OTRO_BCO"
+        },
+        "TLV - Exp. de Compra - NAC - Ya tiene TC IBK": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_YA_TIENE_TC_IBK"
+        },
+        "TLV - Exp. de Compra - NAC - Mas beneficios otro bco": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_MEJOR_BNF_OTRO_BCO"
+        },
+        "TLV - Exp. de Compra - Comparación otro bco": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_COMPARA_CON_OTRO_BCO"
+        },
+        "TLV - Exp.Compra - TC - OFF - Disponibilidad efectivo": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_DISP_EFECTIVO"
+        },
+        "TLV - Exp.Compra - TC - OFF - Millas Benefit": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_MILLAS_BENEFIT"
+        },
+        "TLV - Exp.Compra - TC - OFF - Cero Mantenimiento": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_CERO_MNTO"
+        },
+        "TLV - Exp.Compra - TC - OFF - 55 dias": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_55_DIAS"
+        },
+        "TLV - Exp.Compra - TC - OFF - Cupones Descuentos": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_CUPONES_DCTO"
+        },
+        "TLV - Exp.Compra - TC - OFF - Membresia": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_MEMBRESIA"
+        },
+        "TLV - Exp.Compra - TC - OFF - Priority Pass": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_PRIORITY_PASS"
+        },
+        "TLV - Exp.Compra - TC - OFF - Tarjeta bancarizada": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_TARJETA_BANCARIZADA"
+        },
+        "TLV - Exp. Compra - TC - OBJ - Sin interés": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "NAC_CL_NO_INTERESADO"
+        },
+        "TLV - Exp. Compra - TC - MDO - Sin interes": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "MDO_CL_NO_INTERESADO"
+        },
+        "TLV - Exp.Compra - CL - OCUPADO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "CL_OCUPADO"
+        },
+        "TLV - Exp.Compra - TC - OFF - Benefit - Acumulación": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_BENEFIT_ACUMULACION"
+        },
+        "TLV - Exp.Compra - TC - OFF - Benefit - Tecnológicos": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_BENEFIT_TECNOLOGIA"
+        },
+        "TLV - Exp.Compra - TC - OFF - Benefit - Vales": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_BENEFIT_VALES"
+        },
+        "TLV - Exp.Compra - TC - OFF - Exclusividad": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_TC_EXCLUSIVA"
+        },
+        "TLV - Exp.Compra - TC - OFF - Compras por internet": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_COMPRAS_WEB"
+        },
+        "TLV - Exp.Compra - TC - OFF - Devolucion Supermercados": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_DEVOL_SUPERMERCADOS"
+        },
+        "TLV - Exp. de Compra - TC - OFF - Acceso a Créditos": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "BNF_ACCEDE_CREDITOS"
+        }
+    },
+    "P026-ENCUESTAS_NPS": {
+        "CallIdKey": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CallIdKey"
+        },
+        "EventDate": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "EventDate"
+        },
+        "QueueName": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "QueueName"
+        },
+        "RemoteID": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "RemoteID"
+        },
+        "DNIS_LocalID": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNIS_LocalID"
+        },
+        "BT_Pregunta_2": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "BT_Pregunta_2"
+        },
+        "Respuesta_2": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "Respuesta_2"
+        },
+        "BT_Pregunta_1": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "BT_Pregunta_1"
+        },
+        "Respuesta_1": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "Respuesta_1"
+        },
+        "LastLocalName": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "LastLocalName"
+        }
+    },
+    "P025-SA_TCAD": {
+        "Area": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "COLA"
+        },
+        "cti_BT_Numero_Dni": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        },
+        "cti_AGENTID": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REG_EV"
+        },
+        "Tipificacion": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIPIFICACION"
+        },
+        "Dirección": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DIRECCION"
+        },
+        "Duración (segundos)": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "DURACION"
+        },
+        "ANI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEF_IN"
+        },
+        "DNIS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEF_OUT"
+        },
+        "Hora local de inicio": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_LLAMADA"
+        },
+        "ID de llamada del conmutador": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CONID"
+        },
+        "TLV - Exp.Compra - GT - Ofrecimiento Adicional": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "OFRE_TCAD"
+        },
+        "TCAD_A": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TCAD_A"
+        },
+        "TCAD_B": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "TCAD_B"
+        }
+    },
+    "P026-CROSS_TCAD": {
+        "PERIODO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "PERIODO"
+        },
+        "REG_EJECUTIVO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REG_EJECUTIVO"
+        },
+        "EJECUTIVO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "EJECUTIVO"
+        },
+        "INDICADOR": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "INDICADOR"
+        },
+        "FECHA_GESTION": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_SOLICITUD"
+        },
+        "FLG_VALIDO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "FLG_VALIDO"
+        },
+        "DNI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        }
+    },
+    "P027-SA_CROSS_SEG": {
+        "Area": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "COLA"
+        },
+        "cti_BT_Numero_Dni": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        },
+        "cti_AGENTID": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REG_EV"
+        },
+        "Tipificacion": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIPIFICACION"
+        },
+        "Dirección": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DIRECCION"
+        },
+        "Duración (segundos)": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "DURACION"
+        },
+        "ANI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEF_IN"
+        },
+        "DNIS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEF_OUT"
+        },
+        "Hora local de inicio": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_LLAMADA"
+        },
+        "ID de llamada del conmutador": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CONID"
+        },
+        "SEG_PP_GC_OFRECIMIENTO": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "OFF_SEGUROS_PP"
+        },
+        "SEG_360_GC_Ofrecimiento": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "OFF_SEGUROS_TC"
+        },
+        "EC_CROSS_Seguro": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "OFF_SEGUROS_EC"
+        }
+    },
+    "P028-CROSS_SEG": {
+        "PERIODO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "PERIODO"
+        },
+        "REG_EJECUTIVO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REG_EJECUTIVO"
+        },
+        "EJECUTIVO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "EJECUTIVO"
+        },
+        "INDICADOR": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "INDICADOR"
+        },
+        "FECHA_GESTION": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_GESTION"
+        },
+        "FLG_VALIDO": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "FLG_VALIDO"
+        },
+        "DNI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        }
+    },
+    "P029-SA_MDO": {
+        "Area": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "COLA"
+        },
+        "cti_BT_Numero_Dni": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNI"
+        },
+        "cti_AGENTID": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "REG_EV"
+        },
+        "Tipificacion": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TIPIFICACION"
+        },
+        "Dirección": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DIRECCION"
+        },
+        "Duración (segundos)": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "DURACION"
+        },
+        "ANI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEF_IN"
+        },
+        "DNIS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "TELEF_OUT"
+        },
+        "Hora local de inicio": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FECHA_LLAMADA"
+        },
+        "ID de llamada del conmutador": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "CONID"
+        },
+        "TC_GC_ManejoObj": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "MDO_TC"
+        },
+        "PP_GC_ManejaObjecion": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "MDO_PP"
+        },
+        "EC_GC_ManejaObjecion": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "MDO_EC"
+        },
+        "CD_GC_ManejaObjecion": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "MDO_CD"
+        },
+        "SEG_360_GC_ManejoObj.": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "FLOAT",
+            "Nuevo nombre": "MDO_SEG"
+        }
+    },
+    "P030-RETENCION_CONVENIOS": {
+        "RET_CONVENIOS - COBRANZAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_COBRANZAS"
+        },
+        "RET_CONVENIOS - COMPRA DE DEUDA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_COMPRA_DE_DEUDA"
+        },
+        "RET_CONVENIOS - CONSULTAS GENERALES": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_CONSULTAS_GENERALES"
+        },
+        "RET_CONVENIOS - DEVOLUCIÓN DE CUOTAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_DEVOLUCION_CUOTAS"
+        },
+        "RET_CONVENIOS - INFORMACION DE CAMPAÑAS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_INFO_CAMPANAS"
+        },
+        "RET_CONVENIOS - MAYOR IMPORTE": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_MAYOR_IMPORTE"
+        },
+        "RET_CONVENIOS - MEDIOS PROPIOS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_MEDIOS_PROPIOS"
+        },
+        "RET_CONVENIOS - OFF MAVERICK": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_OFF_MAVERICK"
+        },
+        "RET_CONVENIOS - PEDIDOS Y RECLAMOS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_PEDIDOS_RECLAMOS"
+        },
+        "RET_CONVENIOS - RETENCIONES POR AMPLIACIÓN": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_RET_AMPLIACION"
+        },
+        "RET_CONVENIOS - RETENCIONES POR BAJA DE TASA": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_RET_BAJA_TASA"
+        },
+        "RET_CONVENIOS - SOLICITUD DE CANCELACION": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_SOL_CANCELACION"
+        },
+        "RET_CONVENIOS - SOLICITUD DE CRONOGRAMA DE PAGOS": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_SOL_CRONOGRAMA"
+        },
+        "RET_CONVENIOS - SOLICITUD DE DEUDA TOTAL": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_SOL_DEUDA_TOTAL"
+        },
+        "RET_CONVENIOS - SOLICITUD DE TASA DE INTERES": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_SOL_TASA_INTERES"
+        },
+        "RET_CONVENIOS - TASA DE INTERES": {
+            "Añadir": true,
+            "Null:0/No Null:1": true,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "RET_CONVENIOS_TASA_INTERES"
+        },
+        "Duración (segundos)": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "TiempoLlamada"
+        },
+        "Tiempo total en silencio (seg)": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "TIEMPO_SILENCIO"
+        },
+        "cti_BT_Numero_Dni": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DniCliente"
+        },
+        "cti_AGENTID": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "RegistroAgente"
+        },
+        "Hora local de inicio": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "TIMESTAMP",
+            "Nuevo nombre": "FechaLlamada"
+        },
+        "ANI": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "NUM_TELEF"
+        },
+        "DNIS": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "DNIS"
+        },
+        "Attemps": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "INTEGER",
+            "Nuevo nombre": "Attemps"
+        },
+        "conID": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "conID"
+        },
+        "Tipificacion": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "Tipificacion"
+        },
+        "ID de contacto": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "IDContacto"
+        },
+        "cti_BT_Segmento": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "cti_BT_Segmento"
+        },
+        "Area": {
+            "Añadir": true,
+            "Null:0/No Null:1": false,
+            "Tipo de dato": "VARCHAR(255)",
+            "Nuevo nombre": "Area"
+        }
+    }
+}

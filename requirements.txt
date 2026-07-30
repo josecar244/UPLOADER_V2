@@ -1,0 +1,13 @@
+streamlit
+polars
+python-calamine
+pyarrow
+teradatasql
+python-dotenv
+openpyxl
+fastexcel
+playwright
+requests
+pyodbc
+pandas
+python-docx
