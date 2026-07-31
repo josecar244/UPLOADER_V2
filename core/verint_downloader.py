@@ -311,15 +311,14 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
         logger.debug(f"Navegando a la vista de interacciones: {interactions_url}")
         page.goto(interactions_url)
         
-        # Wait for vertical sidebar menu buttons (.SA_silderMenuButton) to be visible
-        logger.info("Abriendo Speech Analytics y esperando a que la barra lateral de Verint esté 100% visible...")
-        sidebar_proj_btn = page.locator('.SA_silderMenuButton.m_button_project, a[data-qtip="Proyecto"], a.m_button_project').first
+        # 2. Wait ONLY for sidebar menu button to be visible to start filtering immediately
+        logger.info("Abriendo Speech Analytics y esperando que la barra lateral esté visible...")
+        sidebar_proj_btn = page.locator('.SA_silderMenuButton.m_button_project, a[data-qtip="Proyecto"]').first
         sidebar_proj_btn.wait_for(state="visible", timeout=45000)
         
-        # Click "Proyecto" sidebar button
         logger.debug("Haciendo clic en la pestaña Proyecto de la barra lateral...")
         sidebar_proj_btn.click()
-        page.wait_for_timeout(1500)
+        page.wait_for_timeout(1000)
         
         # 3. Select Project "Televentas"
         logger.debug("Seleccionando el proyecto Televentas...")
@@ -381,65 +380,86 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
         # 4. Set Date Filter
         logger.debug(f"Setting Date range: {desde_str} - {hasta_str}...")
         date_set = page.evaluate("""
-            ([desde, hasta]) => {
-                let radioActivated = false;
-
-                // A. Activar botón de opción 'Entre' vía ExtJS ComponentQuery
-                if (window.Ext && window.Ext.ComponentQuery) {
-                    const radios = Ext.ComponentQuery.query('radiofield, radio');
-                    for (let r of radios) {
-                        const label = (r.boxLabel || r.fieldLabel || (r.el ? r.el.dom.innerText : '') || '').toLowerCase();
-                        if (label.includes('entre') || label.includes('between')) {
-                            r.setValue(true);
-                            if (r.fireEvent) r.fireEvent('change', r, true);
-                            radioActivated = true;
-                        }
-                    }
-
-                    const dateFields = Ext.ComponentQuery.query('datefield');
-                    if (dateFields.length >= 2) {
-                        try {
-                            dateFields[0].setValue(desde);
-                            dateFields[1].setValue(hasta);
-                            if (dateFields[0].fireEvent) dateFields[0].fireEvent('change', dateFields[0], desde);
-                            if (dateFields[1].fireEvent) dateFields[1].fireEvent('change', dateFields[1], hasta);
-                        } catch(e) {}
-                    }
-                }
-
-                const safeFireChange = (el) => {
-                    if (!el) return;
-                    try {
-                        const evt = document.createEvent('HTMLEvents');
-                        evt.initEvent('change', true, true);
-                        el.dispatchEvent(evt);
-                    } catch (e) {
-                        try { el.dispatchEvent(new Event('change', { bubbles: true })); } catch(err) {}
-                    }
+            ([desdeDDMM, hastaDDMM]) => {
+                // Formatear DD/MM/YYYY a MM/DD/YYYY según lo indicado en F12 (Formato de fecha esperado como 07/16/2026)
+                const toMMDD = (s) => {
+                    const p = (s || '').split('/');
+                    return p.length === 3 ? `${p[1].padStart(2, '0')}/${p[0].padStart(2, '0')}/${p[2]}` : s;
                 };
+                const desdeMM = toMMDD(desdeDDMM);
+                const hastaMM = toMMDD(hastaDDMM);
 
-                // B. Fallback en DOM puro para seleccionar radio button 'Entre'
-                const dateRadios = Array.from(document.querySelectorAll('input[type="radio"]')).filter(r => {
-                    const parentText = (r.parentElement ? r.parentElement.innerText : '') || '';
-                    const containerText = (r.closest('.x-field, .x-form-item') ? r.closest('.x-field, .x-form-item').innerText : '') || '';
-                    return parentText.includes('Entre') || parentText.includes('Between') || containerText.includes('Entre') || containerText.includes('Between');
+                // 1. Encontrar y activar el radio button 'Entre' / 'Between' (aria-label="Entre")
+                const radio = Array.from(document.querySelectorAll('input[type="radio"]')).find(r => {
+                    const ariaLabel = (r.getAttribute('aria-label') || '').toLowerCase();
+                    const parent = r.closest('tr, .x-field, .x-table-layout-cell') || r.parentElement;
+                    const parentText = (parent ? parent.textContent : '').toLowerCase();
+                    return ariaLabel === 'entre' || ariaLabel.includes('between') || parentText.includes('entre') || parentText.includes('between');
                 });
-                if (dateRadios.length > 0) {
-                    dateRadios[0].click();
-                    dateRadios[0].checked = true;
-                    safeFireChange(dateRadios[0]);
+                
+                if (radio) {
+                    radio.click();
+                    radio.checked = true;
+                    try { radio.dispatchEvent(new Event('change', { bubbles: true })); } catch(e) {}
                 }
 
-                // C. Fallback en inputs de texto de fecha DOM
-                const dateInputs = Array.from(document.querySelectorAll('input')).filter(input => {
-                    return (input.id.includes('datefield') || input.className.includes('x-form-date-trigger') || input.name === 'startDate' || input.name === 'endDate') && input.offsetWidth > 0;
+                // 2. ExtJS ComponentQuery: Habilitar y asignar objetos Date
+                if (window.Ext && window.Ext.ComponentQuery) {
+                    try {
+                        const radios = Ext.ComponentQuery.query('radiofield, radio');
+                        for (let r of radios) {
+                            const label = (r.boxLabel || r.fieldLabel || r.ariaLabel || (r.el ? r.el.dom.innerText : '') || '').toLowerCase();
+                            if (label.includes('entre') || label.includes('between')) {
+                                r.setValue(true);
+                                if (r.fireEvent) r.fireEvent('change', r, true);
+                            }
+                        }
+
+                        const parseDate = (dStr) => {
+                            if (!dStr) return null;
+                            const parts = dStr.split('/');
+                            if (parts.length === 3) {
+                                return new Date(parseInt(parts[2]), parseInt(parts[1]) - 1, parseInt(parts[0]));
+                            }
+                            return null;
+                        };
+
+                        const dateFields = Ext.ComponentQuery.query('datefield');
+                        if (dateFields.length >= 2) {
+                            dateFields[0].enable();
+                            dateFields[1].enable();
+
+                            const dtDesde = parseDate(desdeDDMM);
+                            const dtHasta = parseDate(hastaDDMM);
+
+                            if (dtDesde) dateFields[0].setValue(dtDesde);
+                            else dateFields[0].setValue(desdeMM);
+
+                            if (dtHasta) dateFields[1].setValue(dtHasta);
+                            else dateFields[1].setValue(hastaMM);
+
+                            if (dateFields[0].fireEvent) dateFields[0].fireEvent('change', dateFields[0], dateFields[0].getValue());
+                            if (dateFields[1].fireEvent) dateFields[1].fireEvent('change', dateFields[1], dateFields[1].getValue());
+                        }
+                    } catch(e) {}
+                }
+
+                // 3. Fallback directo DOM: Habilitar inputs deshabilitados y asignar valor en formato MM/DD/YYYY
+                const dateInputs = Array.from(document.querySelectorAll('input')).filter(i => {
+                    const parentText = (i.closest('.x-field, .x-form-item') ? i.closest('.x-field, .x-form-item').textContent : '');
+                    const title = i.getAttribute('title') || '';
+                    return title.includes('Formato de fecha') || parentText.includes('Desde:') || parentText.includes('Hasta:') || i.id.includes('datefield');
                 });
                 
                 if (dateInputs.length >= 2) {
-                    dateInputs[0].value = desde;
-                    dateInputs[1].value = hasta;
-                    safeFireChange(dateInputs[0]);
-                    safeFireChange(dateInputs[1]);
+                    dateInputs[0].removeAttribute('disabled');
+                    dateInputs[1].removeAttribute('disabled');
+                    dateInputs[0].value = desdeMM;
+                    dateInputs[1].value = hastaMM;
+                    ['change', 'input', 'blur'].forEach(evtName => {
+                        try { dateInputs[0].dispatchEvent(new Event(evtName, { bubbles: true })); } catch(e) {}
+                        try { dateInputs[1].dispatchEvent(new Event(evtName, { bubbles: true })); } catch(e) {}
+                    });
                 }
 
                 return { success: true };
@@ -966,18 +986,21 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
                         logger.debug(f"Descargando reporte: {report_name}...")
                         
                         with page.expect_download(timeout=60000) as download_info:
-                            # Click the specific link using universal node search
+                            # Click the specific link
                             page.evaluate("""
                                 (repName) => {
-                                    const nameNodes = Array.from(document.querySelectorAll('*')).filter(el => {
-                                        const t = (el.textContent || '').trim();
-                                        return t.includes(repName) && el.children.length <= 2;
+                                    const rows = Array.from(document.querySelectorAll('.x-grid-item, .x-grid-row, tr.x-grid-row'));
+                                    const targetRow = rows.find(row => {
+                                        const html = (row.outerHTML || '');
+                                        const text = (row.textContent || '');
+                                        return html.includes(repName) || text.includes(repName);
                                     });
-                                    for (const node of nameNodes) {
-                                        const link = node.closest('a, span, .SA_reportLikeLink') || node;
-                                        if (link) {
-                                            link.click();
-                                            return;
+                                    if (targetRow) {
+                                        const nameLink = targetRow.querySelector('.SA_reportLikeLink, a, span');
+                                        if (nameLink) {
+                                            nameLink.click();
+                                        } else {
+                                            targetRow.click();
                                         }
                                     }
                                 }
