@@ -1,5 +1,9 @@
+import os
 import re
+import shutil
+import subprocess
 import time
+import urllib.request
 from pathlib import Path
 from typing import List, Optional
 from playwright.sync_api import Frame, Page, sync_playwright
@@ -18,14 +22,74 @@ class GenesysBrowserAutomation:
         self.genesys_url = genesys_url
         self.tracking_store = tracking_store or TrackingStore()
 
+    def _lanzar_chrome_cdp_automatico(self) -> bool:
+        """Verifica si Chrome CDP responde; si no, lanza Chrome del sistema con el perfil persistente (.chrome_genesys_profile)."""
+        try:
+            req = urllib.request.urlopen(f"{self.cdp_url}/json/version", timeout=1)
+            if req.status == 200:
+                logger.info(f"Chrome ya está escuchando en puerto CDP ({self.cdp_url})")
+                return True
+        except Exception:
+            pass
+
+        chrome_paths = [
+            r"C:\Program Files\Google\Chrome\Application\chrome.exe",
+            r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
+            os.path.join(os.environ.get("LOCALAPPDATA", ""), r"Google\Chrome\Application\chrome.exe"),
+            shutil.which("chrome") or ""
+        ]
+
+        chrome_cmd = next((p for p in chrome_paths if p and os.path.exists(p)), None)
+        if not chrome_cmd:
+            logger.warning("No se encontró el ejecutable de Chrome en las rutas estándar.")
+            return False
+
+        PROFILE_DIR.mkdir(parents=True, exist_ok=True)
+        port = self.cdp_url.split(":")[-1].split("/")[0] if ":" in self.cdp_url else "9222"
+
+        cmd = [
+            chrome_cmd,
+            f"--remote-debugging-port={port}",
+            f"--user-data-dir={PROFILE_DIR.resolve()}",
+            "--no-first-run",
+            "--no-default-browser-check",
+            self.genesys_url
+        ]
+
+        logger.info(f"Auto-iniciando Chrome con perfil persistente ({PROFILE_DIR.name}) en puerto CDP {port}...")
+        try:
+            subprocess.Popen(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        except Exception as e:
+            logger.error(f"Error al ejecutar Chrome: {e}")
+            return False
+
+        start_time = time.time()
+        while time.time() - start_time < 12:
+            try:
+                req = urllib.request.urlopen(f"{self.cdp_url}/json/version", timeout=1)
+                if req.status == 200:
+                    logger.info("Chrome con puerto CDP inicializado correctamente.")
+                    return True
+            except Exception:
+                time.sleep(0.5)
+
+        logger.warning("Chrome fue ejecutado pero no respondió a tiempo en el puerto CDP.")
+        return False
+
     def _obtener_page_principal(self, browser) -> Optional[Page]:
+        if not browser or not browser.contexts:
+            return None
         for ctx in browser.contexts:
             for pg in ctx.pages:
                 try:
-                    if "/analytics/interactions" in pg.url:
+                    if "/analytics/interactions" in pg.url or "purecloud" in pg.url or "genesys" in pg.url:
                         return pg
                 except Exception:
                     continue
+        # Retornar la primera pestaña si ninguna coincide
+        for ctx in browser.contexts:
+            if ctx.pages:
+                return ctx.pages[0]
         return None
 
     def _localizar_iframe(self, page: Page, key_url: str, max_intentos: int = 10) -> Optional[Frame]:
@@ -151,15 +215,16 @@ class GenesysBrowserAutomation:
             context = None
             page = None
 
-            # 1. Intentar conexión a puerto CDP (Chrome ya abierto por el usuario)
-            try:
-                browser = p.chromium.connect_over_cdp(self.cdp_url)
-                logger.info(f"Conectado exitosamente a Chrome abierto vía CDP ({self.cdp_url})")
-                page = self._obtener_page_principal(browser)
-            except Exception:
-                logger.info("No se halló Chrome en puerto CDP. Iniciando perfil persistente automatizado...")
+            # 1. Verificar/Auto-lanzar Chrome CDP con perfil persistente (.chrome_genesys_profile)
+            if self._lanzar_chrome_cdp_automatico():
+                try:
+                    browser = p.chromium.connect_over_cdp(self.cdp_url)
+                    logger.info(f"Conectado exitosamente a Chrome vía CDP ({self.cdp_url})")
+                    page = self._obtener_page_principal(browser)
+                except Exception as e:
+                    logger.warning(f"Error conectando vía CDP a Chrome: {e}")
 
-            # 2. Si no hay CDP, usar perfil persistente local (.chrome_genesys_profile)
+            # 2. Si no se logró la conexión CDP, fallback a persistent context de Playwright
             if not page:
                 user_data_dir = str(PROFILE_DIR)
                 PROFILE_DIR.mkdir(parents=True, exist_ok=True)
@@ -185,33 +250,31 @@ class GenesysBrowserAutomation:
                 page.goto(self.genesys_url)
                 time.sleep(3)
 
-                current_url = page.url
-                es_login = any(k in current_url for k in ["login", "accounts", "sso", "microsoftonline", "auth"])
-
-                if es_login and headless:
-                    logger.info("Sesión no iniciada. Reabriendo Chrome visible para autenticación...")
-                    context.close()
-                    context = _abrir_contexto(is_headless=False)
-                    page = context.pages[0] if context.pages else context.new_page()
-                    page.goto(self.genesys_url)
-
-                if any(k in page.url for k in ["login", "accounts", "sso", "microsoftonline", "auth"]):
-                    logger.info("Por favor, complete el inicio de sesión de Genesys Cloud en Chrome...")
-                    start_time = time.time()
-                    while time.time() - start_time < 180:
-                        if page.is_closed():
-                            logger.warning("Navegador cerrado por el usuario.")
-                            return
-                        try:
-                            if "analytics/interactions" in page.url or "purecloud" in page.url:
-                                if not any(k in page.url for k in ["login", "sso", "microsoftonline"]):
-                                    break
-                        except Exception:
-                            pass
-                        time.sleep(2)
+            # 3. Detectar si la página está en pantalla de login de Microsoft / Genesys SSO
+            if page:
+                try:
+                    current_url = page.url
+                    if any(k in current_url for k in ["login", "accounts", "sso", "microsoftonline", "auth"]):
+                        logger.info("🔑 Sesión no iniciada o token expirado en Microsoft/Genesys.")
+                        logger.info("👉 Por favor complete el inicio de sesión en Chrome. (Tiempo de espera: 5 minutos)...")
+                        start_time = time.time()
+                        while time.time() - start_time < 300:
+                            if page.is_closed():
+                                logger.warning("Navegador cerrado por el usuario.")
+                                return
+                            try:
+                                if "analytics/interactions" in page.url or "purecloud" in page.url:
+                                    if not any(k in page.url for k in ["login", "sso", "microsoftonline"]):
+                                        logger.info("✅ Login completado exitosamente. Sesión persistida.")
+                                        break
+                            except Exception:
+                                pass
+                            time.sleep(2)
+                except Exception as e:
+                    logger.debug(f"Error verificando redirección de login: {e}")
 
             if not page:
-                for ctx in (browser.contexts if browser else [context]):
+                for ctx in (browser.contexts if browser else [context] if context else []):
                     for pg in ctx.pages:
                         try:
                             if "purecloud" in pg.url or "genesys" in pg.url:
