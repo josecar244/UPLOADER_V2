@@ -311,32 +311,15 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
         logger.debug(f"Navegando a la vista de interacciones: {interactions_url}")
         page.goto(interactions_url)
         
-        # Fast initialization: proceed immediately as soon as workspace shell is loaded
-        logger.info("Abriendo Speech Analytics y configurando filtros inmediatamente...")
-        page.wait_for_timeout(1500)
+        # Wait for vertical sidebar menu buttons (.SA_silderMenuButton) to be visible
+        logger.info("Abriendo Speech Analytics y esperando a que la barra lateral de Verint esté 100% visible...")
+        sidebar_proj_btn = page.locator('.SA_silderMenuButton.m_button_project, a[data-qtip="Proyecto"], a.m_button_project').first
+        sidebar_proj_btn.wait_for(state="visible", timeout=45000)
         
-        # Check if project label "Proyecto:" or "Project:" is already visible or needs sidebar click
-        project_label_text = None
-        if page.query_selector("text=Proyecto:"):
-            project_label_text = "Proyecto:"
-            logger.debug("El selector 'Proyecto:' ya está visible.")
-        elif page.query_selector("text=Project:"):
-            project_label_text = "Project:"
-            logger.debug("El selector 'Project:' ya está visible.")
-        else:
-            logger.debug("Haciendo clic en la pestaña Proyecto de la barra lateral...")
-            try:
-                page.locator('span.x-btn-inner:has-text("Proyecto"), span.x-btn-inner:has-text("Project"), .x-btn:has-text("Proyecto"), .x-btn:has-text("Project")').first.click(timeout=8000)
-                page.wait_for_timeout(2000)
-            except Exception as e:
-                logger.debug(f"Clic en pestaña Proyecto: {e}")
-                
-            if page.query_selector("text=Proyecto:"):
-                project_label_text = "Proyecto:"
-            elif page.query_selector("text=Project:"):
-                project_label_text = "Project:"
-            else:
-                project_label_text = "Proyecto:"
+        # Click "Proyecto" sidebar button
+        logger.debug("Haciendo clic en la pestaña Proyecto de la barra lateral...")
+        sidebar_proj_btn.click()
+        page.wait_for_timeout(1500)
         
         # 3. Select Project "Televentas"
         logger.debug("Seleccionando el proyecto Televentas...")
@@ -388,15 +371,12 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
             
         logger.debug("Proyecto Televentas configurado.")
         
-        # Switch to "Mi conjunto de datos" tab
-        logger.debug("Cambiando a la pestaña 'Mi conjunto de datos' / 'My dataset'...")
-        try:
-            page.wait_for_selector('.x-mask', state='detached', timeout=15000)
-        except Exception:
-            pass
-        dataset_tab_selector = 'span.x-btn-inner:has-text("My Data Set"), span.x-btn-inner:has-text("Mi conjunto de datos"), .x-btn:has-text("Mi conjunto de datos"), .x-btn:has-text("My Data Set")'
-        page.locator(dataset_tab_selector).first.click()
-        page.wait_for_timeout(2000)
+        # Switch to "Mi conjunto de datos" tab using exact F12 class .m_button_metadata
+        logger.debug("Cambiando a la pestaña 'Mi conjunto de datos'...")
+        sidebar_dataset_btn = page.locator('.SA_silderMenuButton.m_button_metadata, a[data-qtip="Mi conjunto de datos"], a.m_button_metadata').first
+        sidebar_dataset_btn.wait_for(state="visible", timeout=15000)
+        sidebar_dataset_btn.click()
+        page.wait_for_timeout(1500)
         
         # 4. Set Date Filter
         logger.debug(f"Setting Date range: {desde_str} - {hasta_str}...")
