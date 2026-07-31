@@ -1000,21 +1000,18 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
                         logger.debug(f"Descargando reporte: {report_name}...")
                         
                         with page.expect_download(timeout=60000) as download_info:
-                            # Click the specific link
+                            # Click the specific link using universal node search
                             page.evaluate("""
                                 (repName) => {
-                                    const rows = Array.from(document.querySelectorAll('.x-grid-item, .x-grid-row, tr.x-grid-row'));
-                                    const targetRow = rows.find(row => {
-                                        const html = (row.outerHTML || '');
-                                        const text = (row.textContent || '');
-                                        return html.includes(repName) || text.includes(repName);
+                                    const nameNodes = Array.from(document.querySelectorAll('*')).filter(el => {
+                                        const t = (el.textContent || '').trim();
+                                        return t.includes(repName) && el.children.length <= 2;
                                     });
-                                    if (targetRow) {
-                                        const nameLink = targetRow.querySelector('.SA_reportLikeLink, a, span');
-                                        if (nameLink) {
-                                            nameLink.click();
-                                        } else {
-                                            targetRow.click();
+                                    for (const node of nameNodes) {
+                                        const link = node.closest('a, span, .SA_reportLikeLink') || node;
+                                        if (link) {
+                                            link.click();
+                                            return;
                                         }
                                     }
                                 }
