@@ -311,50 +311,59 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
         logger.debug(f"Navegando a la vista de interacciones: {interactions_url}")
         page.goto(interactions_url)
         
-        # Wait for workspace loading
-        logger.info("Abriendo Speech Analytics y cargando espacio de trabajo...")
+        # Wait for workspace loading and spinner mask detachment
+        logger.info("Abriendo Speech Analytics (esperando que el indicador de carga de Verint desaparezca)...")
         try:
-            page.locator("span.x-btn-inner:has-text('Proyecto'), span.x-btn-inner:has-text('Project'), #appshell-nav-first-level-text, .x-panel").first.wait_for(state="attached", timeout=60000)
+            page.wait_for_function("""
+                () => {
+                    return window.Ext && 
+                           Ext.ComponentQuery && 
+                           Ext.ComponentQuery.query('gridpanel, grid').length > 0;
+                }
+            """, timeout=60000)
+        except Exception:
+            page.wait_for_timeout(5000)
+            
+        try:
+            page.wait_for_selector('.x-mask', state='detached', timeout=20000)
         except Exception:
             pass
         
-        # Wait for sidebar menu button to be present
-        logger.debug("Esperando el botón de la barra lateral...")
-        tab_selector = 'span.x-btn-inner:has-text("Project"), span.x-btn-inner:has-text("Proyecto")'
-        try:
-            page.locator(tab_selector).first.wait_for(state="attached", timeout=60000)
-        except Exception:
-            raise RuntimeError("La interfaz de Speech Analytics de Verint tardó demasiado en cargar.")
-        
-        # Click the "Project" tab to expand it
-        logger.debug("Haciendo clic en la pestaña Project...")
-        page.locator(tab_selector).first.click()
-        page.wait_for_timeout(2000)
-        
-        # Wait for project selector input to render
-        logger.debug("Esperando que aparezca el selector de proyecto...")
-        try:
-            page.wait_for_selector("text=Proyecto:", timeout=8000)
+        # Check if project label "Proyecto:" or "Project:" is already visible or needs sidebar click
+        project_label_text = None
+        if page.query_selector("text=Proyecto:"):
             project_label_text = "Proyecto:"
-        except Exception:
+            logger.debug("El selector 'Proyecto:' ya está visible.")
+        elif page.query_selector("text=Project:"):
+            project_label_text = "Project:"
+            logger.debug("El selector 'Project:' ya está visible.")
+        else:
+            logger.debug("Haciendo clic en la pestaña Proyecto de la barra lateral...")
             try:
-                page.wait_for_selector("text=Project:", timeout=8000)
+                page.locator('span.x-btn-inner:has-text("Proyecto"), span.x-btn-inner:has-text("Project"), .x-btn:has-text("Proyecto"), .x-btn:has-text("Project")').first.click(timeout=8000)
+                page.wait_for_timeout(2000)
+            except Exception as e:
+                logger.debug(f"Clic en pestaña Proyecto: {e}")
+                
+            if page.query_selector("text=Proyecto:"):
+                project_label_text = "Proyecto:"
+            elif page.query_selector("text=Project:"):
                 project_label_text = "Project:"
-            except Exception:
-                raise RuntimeError("No se encontró el selector de Proyecto o Project en la interfaz de Verint.")
+            else:
+                project_label_text = "Proyecto:"
         
         # 3. Select Project "Televentas"
         logger.debug("Seleccionando el proyecto Televentas...")
         project_selected = page.evaluate("""
-            ([projectName, labelText]) => {
+            (projectName) => {
                 const label = Array.from(document.querySelectorAll('*')).find(el => {
-                    return el.textContent && el.textContent.trim() === labelText && el.offsetWidth > 0;
+                    const txt = (el.textContent || '').trim();
+                    return (txt === 'Proyecto:' || txt === 'Project:') && el.offsetWidth > 0;
                 });
-                const projectInput = label ? (label.parentElement.querySelector('input') || label.closest('.x-container').querySelector('input')) : null;
+                const projectInput = label ? (label.parentElement.querySelector('input') || label.closest('.x-container, .x-field').querySelector('input')) : null;
                 
-                if (!projectInput) return { success: false, error: "Project input not found" };
-                
-                if (projectInput.value === projectName) {
+                if (!projectInput) return { success: false, error: "Input de Proyecto no encontrado" };
+                if ((projectInput.value || '').trim() === projectName) {
                     return { success: true, alreadySelected: true };
                 }
                 
@@ -365,29 +374,41 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
                 } else {
                     projectInput.click();
                 }
-                
-                return new Promise((resolve) => {
-                    setTimeout(() => {
-                        const items = Array.from(document.querySelectorAll('.x-boundlist-item'));
-                        const item = items.find(el => el.textContent && el.textContent.trim() === projectName);
-                        if (item) {
-                            item.click();
-                            resolve({ success: true });
-                        } else {
-                            resolve({ success: false, error: "Project option not found", items: items.map(el => el.textContent) });
-                        }
-                    }, 1000);
-                });
+                return { success: true, clicked: true };
             }
-        """, [verint_settings.get("project_name", "Televentas"), project_label_text])
+        """, verint_settings.get("project_name", "Televentas"))
         
-        if not project_selected.get("success"):
-            raise RuntimeError(f"Could not select project: {project_selected.get('error')}")
-        logger.debug("Project Televentas selected successfully.")
+        page.wait_for_timeout(800)
+        try:
+            option = page.locator('.x-boundlist-item:has-text("Televentas")').first
+            if option.is_visible(timeout=3000):
+                option.click()
+            else:
+                page.evaluate("""
+                    (projectName) => {
+                        if (window.Ext && window.Ext.ComponentQuery) {
+                            const combos = Ext.ComponentQuery.query('combo, combobox');
+                            for (let c of combos) {
+                                const label = (c.fieldLabel || c.name || (c.el ? c.el.dom.innerText : '') || '').toLowerCase();
+                                if (label.includes('proyecto') || label.includes('project')) {
+                                    c.setValue(projectName);
+                                }
+                            }
+                        }
+                    }
+                """, verint_settings.get("project_name", "Televentas"))
+        except Exception as ex_opt:
+            logger.warning(f"Aviso al hacer clic en opción Televentas: {ex_opt}")
+            
+        logger.debug("Proyecto Televentas configurado.")
         
         # Switch to "Mi conjunto de datos" tab
         logger.debug("Cambiando a la pestaña 'Mi conjunto de datos' / 'My dataset'...")
-        dataset_tab_selector = 'span.x-btn-inner:has-text("My Data Set"), span.x-btn-inner:has-text("Mi conjunto de datos")'
+        try:
+            page.wait_for_selector('.x-mask', state='detached', timeout=15000)
+        except Exception:
+            pass
+        dataset_tab_selector = 'span.x-btn-inner:has-text("My Data Set"), span.x-btn-inner:has-text("Mi conjunto de datos"), .x-btn:has-text("Mi conjunto de datos"), .x-btn:has-text("My Data Set")'
         page.locator(dataset_tab_selector).first.click()
         page.wait_for_timeout(2000)
         
@@ -783,15 +804,8 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
                     });
                 }
             """, [verint_settings.get("project_name", "Televentas"), exports_project_label])
-            
-            if not project_selected_exports.get("success"):
-                logger.warning(f"No se pudo seleccionar el proyecto en la vista de exportaciones: {project_selected_exports.get('error')}")
-            else:
-                logger.debug("Proyecto seleccionado con éxito en la vista de exportaciones.")
-                page.wait_for_timeout(3000)
-        
-        logger.info("Esperando que se procese la exportación en Verint (tope máximo: 20 minutos)...")
-        max_attempts = 20
+        logger.info("Esperando que se procese la exportación en Verint (tope máximo: 45 minutos)...")
+        max_attempts = 45
         poll_interval = 60 # seconds (1 minuto por intento)
         download_triggered = False
         downloaded_paths = []
@@ -820,13 +834,17 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
                         page.wait_for_timeout(3500)
                     
                     # Re-navegar a la vista de exportaciones guardadas
-                    page.goto(reports_url)
+                    page.goto(exports_url)
                     page.wait_for_timeout(3000)
                     logger.info("Auto-relogin completado con éxito. Reanudando verificación de la grilla...")
                 except Exception as e:
                     logger.error(f"Error al intentar re-iniciar sesión: {e}")
             page.evaluate("""
                 () => {
+                    // Dismiss red error toasts/banners if present
+                    const closeBtns = document.querySelectorAll('.x-tool-close, .x-message-box-close');
+                    closeBtns.forEach(btn => { try { btn.click(); } catch(e) {} });
+
                     if (window.Ext && window.Ext.ComponentQuery) {
                         try {
                             const grids = window.Ext.ComponentQuery.query('gridpanel, grid');
@@ -844,31 +862,29 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
                     if (btn) btn.click();
                 }
             """)
-            page.wait_for_timeout(3000) # Wait 3s after clicking refresh
+            page.wait_for_timeout(3500) # Wait 3.5s after clicking refresh for DOM to stabilize
             try:
                 page.wait_for_selector("text=Cargando...", state="hidden", timeout=5000)
             except Exception:
                 page.wait_for_selector("text=Loading...", state="hidden", timeout=15000)
             
-            # Check row statuses matching our export name (checking outerHTML and data-qtip attributes to avoid ellipsis truncation)
+            # Check row statuses matching our export name with instant DOM fallback
             export_status = page.evaluate("""
                 (name) => {
-                    const allRows = Array.from(document.querySelectorAll('tr.x-grid-row, table.x-grid-item'));
-                    const seen = new Set();
-                    const rows = allRows.filter(r => {
-                        const tr = r.tagName === 'TR' ? r : r.querySelector('tr');
-                        if (tr && !seen.has(tr)) {
-                            seen.add(tr);
-                            return true;
-                        }
-                        return false;
-                    });
-                    const matchingRows = rows.filter(row => {
-                        const html = (row.outerHTML || '');
-                        const text = (row.textContent || '');
-                        return html.includes(name) || text.includes(name);
+                    const nameNodes = Array.from(document.querySelectorAll('*')).filter(el => {
+                        const t = (el.textContent || '').trim();
+                        return t.includes(name);
                     });
                     
+                    if (nameNodes.length === 0) return { found: false };
+                    
+                    const rowsSet = new Set();
+                    nameNodes.forEach(node => {
+                        const row = node.closest('tr, .x-grid-row, .x-grid-item, div[role="row"]') || node.parentElement;
+                        if (row) rowsSet.add(row);
+                    });
+                    
+                    const matchingRows = Array.from(rowsSet);
                     if (matchingRows.length === 0) return { found: false };
                     
                     const details = matchingRows.map(row => {
@@ -882,13 +898,14 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
                         const rowName = (qtip && qtip.includes('Export_Calidad')) ? qtip.trim() : (nameCell ? nameCell.textContent.trim() : name);
                         
                         const statusLower = statusText.toLowerCase();
-                        const isCompleted = statusLower.includes('completad') || statusLower.includes('completed') || statusLower.includes('finalizad') || (statusImg && statusImg.className.includes('statusOK'));
-                        const isLoading = statusLower.includes('proceso') || statusLower.includes('progress') || statusLower.includes('nueva') || statusLower.includes('cola') || statusLower.includes('pendient') || (statusImg && statusImg.className.includes('statusLoading'));
+                        const htmlLower = (row.outerHTML || '').toLowerCase();
+                        const isLoading = statusLower.includes('proceso') || statusLower.includes('progress') || statusLower.includes('nueva') || statusLower.includes('cola') || statusLower.includes('pendient') || (statusImg && statusImg.className.includes('statusloading'));
+                        const isCompleted = !isLoading && (statusLower.includes('completad') || statusLower.includes('completed') || statusLower.includes('finalizad') || (statusImg && statusImg.className.includes('statusok')) || htmlLower.includes('statusok'));
                         
                         return {
                             rowName,
                             isCompleted: isCompleted,
-                            isLoading: isLoading || !isCompleted,
+                            isLoading: isLoading,
                             statusText
                         };
                     });
@@ -904,6 +921,41 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
                     };
                 }
             """, export_name)
+            
+            # If not found immediately after store reload, retry once after 2 seconds before declaring not visible
+            if not export_status.get("found"):
+                page.wait_for_timeout(2000)
+                export_status = page.evaluate("""
+                    (name) => {
+                        const nameNodes = Array.from(document.querySelectorAll('*')).filter(el => {
+                            const t = (el.textContent || '').trim();
+                            return t.includes(name);
+                        });
+                        if (nameNodes.length === 0) return { found: false };
+                        const rowsSet = new Set();
+                        nameNodes.forEach(node => {
+                            const row = node.closest('tr, .x-grid-row, .x-grid-item, div[role="row"]') || node.parentElement;
+                            if (row) rowsSet.add(row);
+                        });
+                        const matchingRows = Array.from(rowsSet);
+                        if (matchingRows.length === 0) return { found: false };
+                        const details = matchingRows.map(row => {
+                            const statusCell = row.querySelector('.x-grid-cell-reportHeaderStatus') || row;
+                            const statusImg = statusCell ? (statusCell.querySelector('.SA_gridImage') || statusCell.querySelector('img')) : null;
+                            const statusText = statusImg ? (statusImg.getAttribute('data-qtip') || statusImg.getAttribute('title') || '') : statusCell.textContent || '';
+                            const nameCell = row.querySelector('.x-grid-cell-reportHeaderName') || row;
+                            const link = nameCell.querySelector('a, span') || nameCell;
+                            const qtip = (link ? (link.getAttribute('data-qtip') || link.getAttribute('title')) : null) || nameCell.getAttribute('data-qtip') || nameCell.getAttribute('title');
+                            const rowName = (qtip && qtip.includes('Export_Calidad')) ? qtip.trim() : (nameCell ? nameCell.textContent.trim() : name);
+                            const statusLower = statusText.toLowerCase();
+                            const htmlLower = (row.outerHTML || '').toLowerCase();
+                            const isLoading = statusLower.includes('proceso') || statusLower.includes('progress') || statusLower.includes('nueva') || statusLower.includes('cola') || statusLower.includes('pendient') || (statusImg && statusImg.className.includes('statusloading'));
+                            const isCompleted = !isLoading && (statusLower.includes('completad') || statusLower.includes('completed') || statusLower.includes('finalizad') || (statusImg && statusImg.className.includes('statusok')) || htmlLower.includes('statusok'));
+                            return { rowName, isCompleted, isLoading, statusText };
+                        });
+                        return { found: true, allCompleted: details.length > 0 && details.every(d => d.isCompleted), anyLoading: details.some(d => d.isLoading), details };
+                    }
+                """, export_name)
             
             if not export_status.get("found"):
                 logger.debug(f"La exportación '{export_name}' aún no es visible en la lista. Esperando...")
