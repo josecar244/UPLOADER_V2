@@ -311,23 +311,9 @@ def _download_verint_data_impl(period=None, headless=True, output_dir=None):
         logger.debug(f"Navegando a la vista de interacciones: {interactions_url}")
         page.goto(interactions_url)
         
-        # Wait for workspace loading and spinner mask detachment
-        logger.info("Abriendo Speech Analytics (esperando que el indicador de carga de Verint desaparezca)...")
-        try:
-            page.wait_for_function("""
-                () => {
-                    return window.Ext && 
-                           Ext.ComponentQuery && 
-                           Ext.ComponentQuery.query('gridpanel, grid').length > 0;
-                }
-            """, timeout=60000)
-        except Exception:
-            page.wait_for_timeout(5000)
-            
-        try:
-            page.wait_for_selector('.x-mask', state='detached', timeout=20000)
-        except Exception:
-            pass
+        # Fast initialization: proceed immediately as soon as workspace shell is loaded
+        logger.info("Abriendo Speech Analytics y configurando filtros inmediatamente...")
+        page.wait_for_timeout(1500)
         
         # Check if project label "Proyecto:" or "Project:" is already visible or needs sidebar click
         project_label_text = None
